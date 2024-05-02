@@ -1,3 +1,28 @@
+<?php
+session_start();  // Start the session to access session variables
+
+// Check if the user is already logged in
+if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+    // Check user role and redirect accordingly
+    switch ($_SESSION['role']) {
+        case 'admin':
+            header('Location: ./admin/dashboardAdmin.php');  // Redirect to admin dashboard
+            break;
+        case 'prof':
+            header('Location: ./prof/dashboardProf.php');  // Redirect to professor dashboard
+            break;
+        case 'etudiant':
+            header('Location: ./etudiant/dashboardEtudiant.php');  // Redirect to student dashboard
+            break;
+        default:
+            session_destroy();  // Unset all session variables
+            header('Location: login.php');  // Redirect to login page if role is not defined
+            break;
+    }
+    exit;
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

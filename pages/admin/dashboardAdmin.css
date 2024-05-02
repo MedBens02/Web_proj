@@ -97,3 +97,20 @@ th {
 .buttonAdd:hover {
     background-color: #399e5b;
 }
+
+.disconnectBtn {
+    padding: 5px 10px;
+    height: 30px;
+    font-weight: 800;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.disconnectBtn:hover {
+    background-color: darkred;
+}

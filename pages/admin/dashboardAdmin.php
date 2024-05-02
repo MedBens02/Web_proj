@@ -19,6 +19,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <body>
     <div class="container">
         <h1>Admin Dashboard</h1>
+        <button class="disconnectBtn" onclick="location.href='../logout.php'">Se seconnecter</button>
         
         <div class="data-section">
             <h2>List des Étudiants</h2>

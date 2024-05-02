@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
         <section class="login-container">
-            <form id="loginForm" class="login-form">
+            <form id="loginForm" class="login-form" novalidate>
                 <fieldset class="login-fieldset">
                     <legend class="form-title">Login</legend>
 
@@ -25,14 +25,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="identifiant">User:</label>
-                        <input id="identifiant" type="text" name="identifiant" class="form-input" value="">
+                        <label for="identifiant">Identifiant:</label>
+                        <input id="identifiant" type="text" name="identifiant" class="form-input" value="" required>
                         <small id="loginError" class="error-message" hidden></small>
                     </div>
 
                     <div class="form-group">
                         <label for="mdp">Mot de Passe:</label>
-                        <input id="mdp" type="password" name="mdp" class="form-input">
+                        <input id="mdp" type="password" name="mdp" class="form-input" required>
                         <small id="mdpError" class="error-message" hidden></small>
                     </div>
 

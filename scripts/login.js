@@ -56,7 +56,7 @@ form.addEventListener("submit", function(event) {
     if (isValid)
         sendXHR();
     else
-        displayError(errorMsg, "Please fill out all fields correctly.");
+        displayError(errorMsg, "Veuillez remplir tout les champs.");
 });
 
 function sendXHR() {

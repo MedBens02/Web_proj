@@ -8,6 +8,7 @@ const userType = document.getElementById("userType");
 
 const loginError = document.getElementById("loginError");
 const mdpError = document.getElementById("mdpError");
+const errorMsg = document.getElementById("failed");
 
 document.addEventListener("DOMContentLoaded", function() {
 	userType.dispatchEvent(new Event('change'));
@@ -22,33 +23,27 @@ userType.addEventListener("change", () => {
 
 login.addEventListener("blur", () => {
 	if (login.value === "") {
-		loginError.textContent = "Ce champs est obligatoire";
-		loginError.hidden = false;
+		displayError(loginError, "Ce champs est obligatoire");
 		console.log("No identifiant Error");
 	}
 });
 
 mdp.addEventListener("blur", () => {
-	if (mdp.value === "") {
-		mdpError.textContent = "Ce champs est obligatoire";
-		mdpError.hidden = false;
-		console.log("No password Error");
+	if (login.value === "") {
+		displayError(mdpError, "Ce champs est obligatoire");
+		console.log("No identifiant Error");
 	}
 });
 
 // Add input event listeners to hide error messages when the user starts typing
 login.addEventListener("input", () => {
-	if (login.value !== "") {
-		loginError.textContent = ""; // Clear the error message
-		loginError.hidden = true; // Hide the error message
-	}
+	if (login.value !== "")
+		hideError(loginError, '');
 });
 
 mdp.addEventListener("input", () => {
-	if (mdp.value !== "") {
-		mdpError.textContent = ""; // Clear the error message
-		mdpError.hidden = true; // Hide the error message
-	}
+	if (mdp.value !== "")
+		hideError(mdpError, '');
 });
 
 
@@ -61,7 +56,7 @@ form.addEventListener("submit", function(event) {
     if (isValid)
         sendXHR();
     else
-        displayError("Please fill out all fields correctly.");
+        displayError(errorMsg, "Please fill out all fields correctly.");
 });
 
 function sendXHR() {
@@ -82,44 +77,46 @@ function sendXHR() {
 }
 
 function handleResponse(response) {
-	const errorMsg = document.getElementById("failed");
-	if (response == "okAdmin") {
-		//Redirection page Admin
-		console.log("Admin found");
-		errorMsg.textContent =
-		  "";
-		errorMsg.hidden = true;
-		//window.location.href = "./pages/admin/dashboard.php";
+
+	switch (response) {
+		case 'okAdmin':
+			//Redirection page Admin
+			hideError(errorMsg, "Admin found");
+			//window.location.href = "./pages/admin/dashboard.php";
+			break;
+
+		case 'okEtudiant':
+			//Redirection page Admin
+			hideError(errorMsg, "Etudiant found");
+			//window.location.href = "./pages/etudiant/welcome.php";
+			break;
+
+		case 'okProf':
+			//Redirection page Admin
+			hideError(errorMsg, "Prof found");
+			window.location.href = './prof/dashboardProf.php';
+			break;
+
+		case 'error':
+			//Mot de passe ou identifiant incorrect
+			displayError(errorMsg, "identifiant ou mot de passe incorrect");
+			break;
+
+		default:
+			console.log(response);
+			break;
 	}
-	else if (response == "okEtudiant") {
-		//Redirection page Etudiant
-		console.log("Etudiant found");
-		errorMsg.textContent =
-		  "";
-		errorMsg.hidden = true;
-		//window.location.href = "./views/etudiant/welcome.php";
-	}
-	else if (response == "okProf") {
-		//Redirection page Prof
-		console.log("Prof found");
-		errorMsg.textContent =
-		  "";
-		errorMsg.hidden = true;
-		window.location.href = './prof/dashboardProf.php';
-	}
-	else if (response === "error") {
-		//Mot de passe incorrect
-		errorMsg.textContent =
-		  "identifiant ou mot de passe incorrect";
-		errorMsg.hidden = false;
-	}
-	else {
-		console.log(response);
-	}
+
 }
 
-function displayError(message) {
-    const errorMsg = document.getElementById("failed");
-    errorMsg.textContent = message;
-    errorMsg.hidden = false;
+function displayError(error, message) {
+    error.textContent = message;
+    error.hidden = false;
+}
+
+function hideError(error, consoleMsg) {
+	console.log(consoleMsg);
+	error.textContent =
+		  "";
+	error.hidden = true;
 }

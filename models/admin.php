@@ -27,4 +27,18 @@ class Admin {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    static public function removeProf($profId) {
+        $stmt = DB::connect()->prepare('DELETE FROM professeurs WHERE id = :id');
+        $stmt->bindParam(':id', $profId);
+        return $stmt->execute();
+    }
+
+    static public function removeEtudiant($etudiantId) {
+        $stmt = DB::connect()->prepare('DELETE FROM etudiant WHERE id = :id');
+        $stmt->bindParam(':id', $etudiantId);
+        return $stmt->execute();
+    }
+
+
+
 }

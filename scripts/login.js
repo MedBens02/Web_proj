@@ -82,7 +82,7 @@ function handleResponse(response) {
 		case 'okAdmin':
 			//Redirection page Admin
 			hideError(errorMsg, "Admin found");
-			//window.location.href = "./pages/admin/dashboard.php";
+			window.location.href = "./admin/dashboardAdmin.php";
 			break;
 
 		case 'okEtudiant':

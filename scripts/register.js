@@ -98,9 +98,10 @@ form.addEventListener("submit", function(event) {
         // If any field is invalid, we iterate through them
             if (!login.validity.valid) {
                 // Find the corresponding error element
+                console.log("Test email invalid");
                 const errorField = document.getElementById("failed");
-                errorField.textContent = "Veuillez entrer un email valide"; // Show the browser's error message
-                errorField.hidden = false; // Make sure it's visible
+                errorField.textContent = "Veuillez entrer un email valide";
+                errorField.hidden = false;
             }
     } else {
         // If all fields are valid, proceed with the XHR request
@@ -125,6 +126,9 @@ function handleResponse(response) {
     const errorMsg = document.getElementById("failed");
     if (response === "okEtudiant") {
         console.log("Etudiant added");
+        window.location.href = "../pages/login.php";
+    } else if (response === "okProf") {
+        console.log("Prof added");
         window.location.href = "../pages/login.php";
     } else if (response === "errorEmail") {
         errorMsg.textContent = "Email existe";

@@ -9,7 +9,7 @@
 <body>
     <div class="wrapper">
         <section class="login-container">
-            <form id="loginForm" class="login-form">
+            <form id="loginForm" class="login-form" novalidate>
                 <fieldset class="login-fieldset">
                     <legend class="form-title">Register</legend>
 

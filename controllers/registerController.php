@@ -19,15 +19,17 @@ require_once('../models/user.php');
 	);
 
 	if ($role === "etudiant") {
-		$res = Etudiant::addUser($data);
 		if (Etudiant::checkEmailExists($login)) {
     		echo "errorEmail";
+    		return;
     	}
+    	$res = Etudiant::addUser($data);
 	} else if ($role === "prof") {
-	    $res = Prof::addUser($data);
 	    if (Prof::checkEmailExists($login)) {
     		echo "errorEmail";
+    		return;
     	}
+    	$res = Prof::addUser($data);
 	}
 
 	if ($res === "ok")

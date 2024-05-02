@@ -1,0 +1,39 @@
+<?php
+session_start();
+
+require_once('../models/user.php');
+
+    $login = isset($_POST['identifiant']) ? $_POST['identifiant'] : NULL;
+    $mdp = isset($_POST['mdp']) ? $_POST['mdp'] : NULL;
+    $role = isset($_POST['userType']) ? $_POST['userType'] : NULL;
+	$nom = isset($_POST['name']) ? $_POST['name'] : NULL;
+	$surname = isset($_POST['surname']) ? $_POST['surname'] : NULL;
+	$address = isset( $_POST['address']) ? $_POST['address'] : NULL;
+
+	$data = array(
+		'nom' =>  $nom ,
+		'prenom' =>  $surname ,
+		'email' =>  $login ,
+		'adresse' => $address ,
+		'mot_de_passe' => $mdp ,
+	);
+
+	if ($role === "etudiant") {
+		$res = Etudiant::addUser($data);
+		if (Etudiant::checkEmailExists($login)) {
+    		echo "errorEmail";
+    	}
+	} else if ($role === "prof") {
+	    $res = Prof::addUser($data);
+	    if (Prof::checkEmailExists($login)) {
+    		echo "errorEmail";
+    	}
+	}
+
+	if ($res === "ok")
+    	echo "ok" . ucfirst($role);  // Returns "okEtudiant" or "okProf"
+	else
+    	echo "error";
+
+    
+

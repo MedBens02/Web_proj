@@ -28,6 +28,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
         
         <div class="data-section">
             <h2>List des Professeurs</h2>
+            <button class="buttonAdd">Ajouter Prof</button>
             <div id="profs"></div>
         </div>
 

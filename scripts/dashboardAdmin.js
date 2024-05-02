@@ -18,7 +18,7 @@ function fetchProfs() {
                         <td>${prof.prenom}</td>
                         <td>${prof.email}</td>
                         <td>${prof.adresse}</td>
-                        <td><button class='delete-btn' onclick='removeProf(${prof.id})'>Delete</button></td>
+                        <td><button class='delete-btn' onclick='confirmDeleteProf(${prof.id})'>Delete</button></td>
                      </tr>`;
         });
         html += `</table>`;
@@ -40,12 +40,24 @@ function fetchStudents() {
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
                         <td>${student.adresse}</td>
-                        <td><button class='delete-btn' onclick='deleteStudent(${student.id})'>Delete</button></td>
+                        <td><button class='delete-btn' onclick='confirmDeleteStudent(${student.id})'>Delete</button></td>
                      </tr>`;
         });
         html += `</table>`;
         container.innerHTML = html;
     });
+}
+
+function confirmDeleteProf(profId) {
+    if (confirm('Are you sure you want to delete this professor?')) {
+        removeProf(profId);
+    }
+}
+
+function confirmDeleteStudent(stdId) {
+    if (confirm('Are you sure you want to delete this student?')) {
+        removeStudent(stdId);
+    }
 }
 
 
@@ -62,6 +74,23 @@ function removeProf(profId) {
             fetchProfs();
         } else {
             alert('Failed to delete professor.');
+        }
+    });
+}
+
+function removeStudent(stdId) {
+    fetch('../../controllers/removeStudent.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `stdId=${stdId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Refresh the students list
+            fetchStudents();
+        } else {
+            alert('Failed to delete student.');
         }
     });
 }

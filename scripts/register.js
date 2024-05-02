@@ -113,7 +113,7 @@ function sendXHR() {
     const xhr = getXhr();       //get the xhr response using 
     xhr.open(
       /* Method:       */ "POST",
-      /* target URL :  */ "../controllers/registerController.php",
+      /* target URL :  */ window.location.origin + "/proj/controllers/registerController.php",
       /* Async flag :  */ true
     );
     xhr.onreadystatechange = function () {
@@ -128,12 +128,21 @@ function sendXHR() {
 
 function handleResponse(response) {
     const errorMsg = document.getElementById("failed");
+    const userRole = document.getElementById("userRole").value; // Get the role from the hidden input
     if (response === "okEtudiant") {
         console.log("Etudiant added");
-        window.location.href = "../pages/login.php";
+        if (userRole === "admin") {
+            window.location.href = "../../pages/admin/dashboardAdmin.php"; // Redirect to admin dashboard if admin
+        } else {
+            window.location.href = "../pages/login.php"; // Redirect to login page for others
+        }
     } else if (response === "okProf") {
         console.log("Prof added");
-        window.location.href = "../pages/login.php";
+        if (userRole === "admin") {
+            window.location.href = "../../pages/admin/dashboardAdmin.php"; // Redirect to admin dashboard if admin
+        } else {
+            window.location.href = "../pages/login.php"; // Redirect to login page for others
+        }
     } else if (response === "errorEmail") {
         errorMsg.textContent = "Email existe";
         errorMsg.hidden = false;

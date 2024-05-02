@@ -22,13 +22,13 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
         
         <div class="data-section">
             <h2>List des Étudiants</h2>
-            <button class="buttonAdd">Ajouter etudiant</button>
+            <button class="buttonAdd" onclick="window.location.href='registerEtudiant.php';">Ajouter etudiant</button>
             <div id="students"></div>
         </div>
         
         <div class="data-section">
             <h2>List des Professeurs</h2>
-            <button class="buttonAdd">Ajouter Prof</button>
+            <button class="buttonAdd" onclick="window.location.href='registerProf.php';">Ajouter Prof</button>
             <div id="profs"></div>
         </div>
 

@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <title>Plateforme Scolarité</title>
 </head>
 <body>

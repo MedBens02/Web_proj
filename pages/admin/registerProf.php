@@ -65,7 +65,14 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="submit-btn">Ajouter Prof</button>
+                        <button type="submit" class="submit-btn">Ajouter prof</button>
+                        <button id="annuler" type="button" class="submit-btn">Annuler</button>
+                        <script type="text/javascript">
+                            const annuler = document.getElementById('annuler');
+                            annuler.addEventListener('click', function() {
+                                window.location.href = './dashboardAdmin.php'; // Adjust the path as necessary
+                            });
+                        </script>
                     </div>
                 </fieldset>
             </form>

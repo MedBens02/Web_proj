@@ -55,6 +55,10 @@
                     <div class="form-group">
                         <button type="submit" class="submit-btn">Creer un compte</button>
                     </div>
+                    <div class="form-group">
+                        <label>Vous avez deja un compte?</label>
+                        <a href="./login.php">Se connecter</a> 
+                    </div>
                 </fieldset>
             </form>
         </section>

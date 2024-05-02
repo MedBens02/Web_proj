@@ -1,6 +1,6 @@
 import getXhr from "./XHR.js";
 
-const form = document.getElementById("loginForm");
+const form = document.getElementById("registerForm");
 
 const login = document.getElementById("identifiant");
 const mdp = document.getElementById("mdp");
@@ -110,8 +110,12 @@ form.addEventListener("submit", function(event) {
 });
 
 function sendXHR() {
-    const xhr = getXhr();
-    xhr.open("POST", "../controllers/registerController.php", true);
+    const xhr = getXhr();       //get the xhr response using 
+    xhr.open(
+      /* Method:       */ "POST",
+      /* target URL :  */ "../controllers/registerController.php",
+      /* Async flag :  */ true
+    );
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const res = xhr.responseText;

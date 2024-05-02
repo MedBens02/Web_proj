@@ -18,7 +18,7 @@ function fetchProfs() {
                         <td>${prof.prenom}</td>
                         <td>${prof.email}</td>
                         <td>${prof.adresse}</td>
-                        <td><button class='delete-btn' onclick='deleteProf(${prof.id})'>Delete</button></td>
+                        <td><button class='delete-btn' onclick='removeProf(${prof.id})'>Delete</button></td>
                      </tr>`;
         });
         html += `</table>`;
@@ -45,5 +45,23 @@ function fetchStudents() {
         });
         html += `</table>`;
         container.innerHTML = html;
+    });
+}
+
+
+function removeProf(profId) {
+    fetch('../../controllers/removeProf.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `profId=${profId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Refresh the profs list
+            fetchProfs();
+        } else {
+            alert('Failed to delete professor.');
+        }
     });
 }

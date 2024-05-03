@@ -8,34 +8,55 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: [start sidebar-start] 1fr 
+        [sidebar-end content-start] 4fr [end content-end];
+    grid-template-rows: [start header-start] 1fr [header-end content-start] 
+        7fr [end content-end];
+    gap: 20px;
     padding: 20px;
     overflow: auto; 
+    height: 90vh;
+    min-width: 1000px;
 }
 
 h1 {
     margin-bottom: 20px;
 }
 
-.container {
+.dash-title {
+    padding: 20px;
+    grid-column: content-start / end;
+    grid-row: start / header-end;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.tables-cont {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: content-start / content-end;
+    grid-row: content-start / end;
+}
+
+.contn {
     background: white;
+    padding: 20px;
+    padding-bottom: 100px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+/* Side Navigation Styles */
+.side-nav {
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 90%;
-    display: flex;
-    justify-content: space-between; /* Adjusts space between subcontainers */
-    flex-wrap: wrap;
-}
+    grid-column: sidebar-start / sidebar-end;
+    grid-row: start / end;
 
-.data-section {
-    overflow: auto; 
-    margin-top: 20px;
-    width: 100%; /* Adjust the width to fit two sections side by side */
-    padding: 10px;
-    box-sizing: border-box; /* Includes padding in width calculation */
 }
 
 table {
@@ -113,4 +134,19 @@ th {
 
 .disconnectBtn:hover {
     background-color: darkred;
+}
+
+.side-nav a {
+    border-radius: 8px;
+    padding: 6px 8px 6px 16px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.side-nav a:hover {
+    background-color: red;
+    color: #f1f1f1;
 }

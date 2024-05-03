@@ -13,6 +13,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="dashboardAdmin.css">
 </head>

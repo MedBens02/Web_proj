@@ -27,6 +27,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <title>Plateforme Scolarité</title>
 </head>

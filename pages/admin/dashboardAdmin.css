@@ -12,11 +12,12 @@ body {
     grid-template-columns: [start sidebar-start] 1fr 
         [sidebar-end content-start] 4fr [end content-end];
     grid-template-rows: [start header-start] 1fr [header-end content-start] 
-        7fr [end content-end];
+        6fr [content-end footer-start] auto [end footer-end];
     gap: 20px;
     padding: 20px;
     overflow: auto; 
-    height: 90vh;
+    height: 100vh;
+    min-height: 800px;
     min-width: 1000px;
 }
 
@@ -33,6 +34,7 @@ h1 {
     flex-wrap: wrap;
 }
 .tables-cont {
+    padding: 20px;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -44,7 +46,6 @@ h1 {
 .contn {
     background: white;
     padding: 20px;
-    padding-bottom: 100px; 
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -61,7 +62,7 @@ h1 {
 
 table {
     width: 100%; /* Table width to fill subcontainer */
-    min-width: 800px;
+    min-width: 600px;
     border-collapse: collapse;
     margin-top: 20px;
     table-layout: fixed; /* This ensures the columns have fixed widths regardless of content */

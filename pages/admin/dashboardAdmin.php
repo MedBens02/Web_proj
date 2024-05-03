@@ -20,6 +20,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <body>
     <div class="dash-title">
         <h1>Admin Dashboard</h1>
+        <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se seconnecter</button>
     </div>
 

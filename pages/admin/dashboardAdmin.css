@@ -51,6 +51,10 @@ h1 {
 }
 /* Side Navigation Styles */
 .side-nav {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -139,7 +143,7 @@ th {
 
 .side-nav a {
     border-radius: 8px;
-    padding: 6px 8px 6px 16px;
+    padding: 6px 8px 6px 8px;
     margin-top: 10px;
     text-decoration: none;
     font-size: 25px;

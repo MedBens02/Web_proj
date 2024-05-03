@@ -26,7 +26,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 
     <!-- Side Navigation Menu -->
     <div class="side-nav">
-        <h1>TEST side nav</h1>
+        <img src="../pfp.jpg" width="100px" height="100px">
         <a href="dashboardAdmin.php">Dashboard</a>
         <a href="manageUsers.php">Manage Users</a>
         <a href="settings.php">Settings</a>

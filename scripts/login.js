@@ -86,13 +86,13 @@ function handleResponse(response) {
 			break;
 
 		case 'okEtudiant':
-			//Redirection page Admin
+			//Redirection page etd
 			hideError(errorMsg, "Etudiant found");
-			//window.location.href = "./pages/etudiant/welcome.php";
+			window.location.href = "./etudiant/dashboardEtudiant.php";
 			break;
 
 		case 'okProf':
-			//Redirection page Admin
+			//Redirection page prof
 			hideError(errorMsg, "Prof found");
 			window.location.href = './prof/dashboardProf.php';
 			break;

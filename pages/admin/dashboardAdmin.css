@@ -63,6 +63,15 @@ h1 {
     grid-row: start / end;
 
 }
+.side-nav h2 {
+    padding-top: 15px;
+}
+
+.side-nav h4 {
+    padding-top: 10px;
+    opacity: 60%;
+    padding-bottom: 50px;
+}
 
 table {
     width: 100%; /* Table width to fill subcontainer */

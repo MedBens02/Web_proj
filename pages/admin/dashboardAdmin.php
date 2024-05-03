@@ -20,13 +20,15 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <body>
     <div class="dash-title">
         <h1>Admin Dashboard</h1>
-        <h2><?php echo $_SESSION['nom_complet']; ?></h2>
-        <button class="disconnectBtn" onclick="location.href='../logout.php'">Se seconnecter</button>
+        <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
 
     <!-- Side Navigation Menu -->
     <div class="side-nav">
         <img src="../pfp.jpg" width="100px" height="100px">
+
+        <h2><?php echo $_SESSION['nom_complet']; ?></h2>
+        <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardAdmin.php">Dashboard</a>
         <a href="manageUsers.php">Manage Users</a>
         <a href="settings.php">Settings</a>

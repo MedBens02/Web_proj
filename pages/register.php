@@ -39,6 +39,8 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 
                     <div id="failed" class="error-alert" hidden></div>
 
+                    <input type="hidden" id="userRole" value="">
+
                     <div class="form-group">
                         <label for="userType">Type de compte:</label>
                         <select id="userType" name="userType" class="form-input">

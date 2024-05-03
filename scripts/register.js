@@ -95,18 +95,17 @@ form.addEventListener("submit", function(event) {
 
     let isValid = form.checkValidity();  // Checks the entire form's validity
     if (!isValid) {
-        // If any field is invalid, we iterate through them
-            if (!login.validity.valid) {
-                // Find the corresponding error element
-                console.log("Test email invalid");
-                const errorField = document.getElementById("failed");
-                errorField.textContent = "Veuillez entrer un email valide";
-                errorField.hidden = false;
-            }
-    } else {
-        // If all fields are valid, proceed with the XHR request
-        sendXHR();
-    }
+      // If any field is invalid, we iterate through them
+      // Find the corresponding error element
+      console.log("Test email invalid");
+      const errorField = document.getElementById("failed");
+      if (!login.validity.valid)
+        errorField.textContent = "Veuillez entrer un email valide";
+      else
+        errorField.textContent = "Veuillez remplir tout les champs";
+      errorField.hidden = false;
+    } else
+        sendXHR(); // If all fields are valid, proceed with the XHR request
 });
 
 function sendXHR() {

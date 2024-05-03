@@ -59,5 +59,3 @@ class Prof extends User {
 
     // Additional methods specific to Prof can be added here
 }
-
-

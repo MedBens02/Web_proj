@@ -9,11 +9,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     exit;
 }
 
-include_once('../../models/user.php');
-include_once('../../models/cours.php');
-// Assuming authentication and user role checks are done
-$etudiants = Prof::getAllEtudiants();
-$Courses = Cours::getAllCourses();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +16,7 @@ $Courses = Cours::getAllCourses();
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
-    <link rel="stylesheet" href="../admin/dashboardAdmin.css">
+    <link rel="stylesheet" href="dashboardProf.css">
 </head>
 <body>
     <div class="dash-title">
@@ -52,7 +47,7 @@ $Courses = Cours::getAllCourses();
         <div class="contn">
         <h2>List des cours</h2>
         <button class="buttonAdd" onclick="window.location.href='addCours.php';">Ajouter Cours</button>
-        <div id="cours" class="table-wrapper"></div>
+        <div id="cours" class="table-wrapper course-table"></div>
         </div>
     </div>
     

@@ -3,14 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchCourses();
 });
 
-
 function fetchStudents() {
     fetch('../../controllers/fetchStudents.php')
     .then(response => response.json())
     .then(students => {
         const container = document.getElementById('students');
         let html = `<table>`;
-        html += `<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th><th>Action</th></tr>`;
+        html += `<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th></tr>`;
         students.forEach(student => {
             html += `<tr>
                         <td>${student.id}</td>
@@ -18,7 +17,6 @@ function fetchStudents() {
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
                         <td>${student.adresse}</td>
-                        <td><button class='delete-btn' onclick='confirmDeleteStudent(${student.id})'>Delete</button></td>
                      </tr>`;
         });
         html += `</table>`;
@@ -35,12 +33,13 @@ function fetchCourses() {
             const cours = JSON.parse(text); // Try to parse text as JSON
             const container = document.getElementById('cours');
             let html = `<table>`;
-            html += `<tr><th>ID</th><th>Cours</th><th>Description</th></tr>`;
+            html += `<tr><th>ID</th><th>Cours</th><th>Description</th><th>Action</th></tr>`;
             cours.forEach(course => {
                 html += `<tr>
                             <td>${course.id}</td>
                             <td>${course.nom}</td>
                             <td>${course.description}</td>
+                            <td><button class='delete-btn' onclick='confirmDeleteCours(${course.id})'>Delete</button></td>
                          </tr>`;
             });
             html += `</table>`;
@@ -51,5 +50,28 @@ function fetchCourses() {
     })
     .catch(error => {
         console.error('Error fetching the courses:', error);
+    });
+}
+
+function confirmDeleteCours(crsId) {
+    if (confirm('Are you sure you want to delete this Cours?')) {
+        removeCours(crsId);
+    }
+}
+
+function removeCours(crsId) {
+    fetch('../../controllers/removeCours.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `crsId=${crsId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Refresh the profs list
+            fetchCourses();
+        } else {
+            alert('Failed to delete course.');
+        }
     });
 }

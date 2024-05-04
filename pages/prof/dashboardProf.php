@@ -29,7 +29,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
-        <a href="manageUsers.php" id="manage-users-link">Manage Users</a>
+        <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
         <a href="settings.php" id="settings-link">Settings</a>
         <a href="help.php" id="help-link">Help</a>
         <a href="../logout.php">Logout</a>
@@ -38,7 +38,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <div class="tables-cont">
         <div class="contn">
         <h2>List des Étudiants</h2>
-        <button class="buttonAdd" onclick="window.location.href='registerEtudiant.php';">Ajouter etudiant</button>
         <div id="students" class="table-wrapper"></div>
         </div>
     </div>
@@ -46,7 +45,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <div class="tables-two-cont">
         <div class="contn">
         <h2>List des cours</h2>
-        <button class="buttonAdd" onclick="window.location.href='addCours.php';">Ajouter Cours</button>
+        <button class="buttonAdd" onclick="window.location.href='manageCours.php';">Ajouter Cours</button>
         <div id="cours" class="table-wrapper course-table"></div>
         </div>
     </div>

@@ -5,10 +5,12 @@ class Cours {
 
     
   
-    public static function check($login){
+    public static function check($login, $prfid){
         $conn = DB::connect();
-        $stmt = $conn->prepare('SELECT * FROM modules WHERE nom = ?');
-        $stmt->execute([$login]);
+        $stmt = $conn->prepare('SELECT * FROM modules WHERE nom = :nom AND prof_id = :id');
+        $stmt->bindParam(':nom', $login);
+        $stmt->bindParam(':id', $prfid);
+        $stmt->execute();
         $count = $stmt->rowCount();
         $stmt = null; 
         return $count > 0;
@@ -16,7 +18,7 @@ class Cours {
     }
 	public static function ajouterCours($data) {
         $conn = DB::connect();
-        $stmt = $conn->prepare('INSERT INTO modules (nom, description) VALUES (:nom, :description, :id)');
+        $stmt = $conn->prepare('INSERT INTO modules (nom, description, prof_id) VALUES (:nom, :description, :id)');
     
        
             $stmt->bindParam(':nom', $data['nom']);

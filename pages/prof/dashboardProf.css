@@ -109,7 +109,8 @@ h1, h2 {
 }
 
 .table-wrapper {
-    max-height: 200px; 
+    margin-top: 10px;
+    max-height: 250px; 
     overflow-y: auto;
 }
 
@@ -142,6 +143,9 @@ th:nth-child(5), td:nth-child(5) { width: 20%; } /* Address */
 }
 
 th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     color: var(--second-color);
     background-color: var(--fourth-color);
 }

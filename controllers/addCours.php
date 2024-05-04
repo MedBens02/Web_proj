@@ -9,15 +9,16 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 
 require_once('../models/cours.php');
 
-$nom = isset($_POST['nom']) ? $_POST['nom'] : NULL;
-$description = isset($_POST['description']) ? $_POST['description'] : NULL;
-$prfid = isset($_POST['id_prf']) ? $_POST['id_prf'] : NULL;
+$nom = isset($_POST['title']) ? $_POST['title'] : NULL;
+$description = isset($_POST['desc']) ? $_POST['desc'] : NULL;
+$prfid = $_SESSION['id_prf'];
+
 $data = array(
     'nom' =>  $nom,
     'description' =>  $description,
     'prfid' => $prfid
 );
-if (Cours::check($nom)) {
+if (Cours::check($nom, $prfid)) {
     echo "already exist";
     return;
 }

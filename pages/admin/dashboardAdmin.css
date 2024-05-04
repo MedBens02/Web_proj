@@ -5,24 +5,45 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-color: #CDE8E5;
+    --second-color: #EEF7FF;
+    --third-color: #7AB2B2;
+    --fourth-color: #4D869C;
+
+    --main-dark-color: #003C43;
+    --second-dark-color: #135D66;
+    --third-dark-color: #77B0AA;
+    --fourth-dark-color: #E3FEF7;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--main-color);
     display: grid;
     grid-template-columns: [start sidebar-start] 1fr 
         [sidebar-end content-start] 4fr [end content-end];
     grid-template-rows: [start header-start] 1fr [header-end content-start] 
-        6fr [content-end footer-start] auto [end footer-end];
+        4fr [content-end content-two-start] 4fr [content-two-end footer-start]
+        auto [end footer-end];
     gap: 20px;
     padding: 20px;
     overflow: auto; 
     height: 100vh;
     min-height: 800px;
     min-width: 1000px;
+
 }
 
-h1 {
-    margin-bottom: 20px;
+h1, h2 {
+    color: var(--fourth-color);
+}
+
+.footer {
+    grid-row: footer-start / footer-end;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .dash-title {
@@ -34,17 +55,23 @@ h1 {
     flex-wrap: wrap;
 }
 .tables-cont {
-    padding: 20px;
-    gap: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     grid-column: content-start / content-end;
-    grid-row: content-start / end;
+    grid-row: content-start / content-two-start;
+}
+.tables-two-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: content-start / content-end;
+    grid-row: content-two-start / content-two-end;
 }
 
 .contn {
-    background: white;
+    height: 100%;
+    background: var(--second-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -55,7 +82,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: var(--second-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -65,12 +92,25 @@ h1 {
 }
 .side-nav h2 {
     padding-top: 15px;
+    color: var(--fourth-color);
+    font-size: 28px;
 }
 
 .side-nav h4 {
     padding-top: 10px;
-    opacity: 60%;
     padding-bottom: 50px;
+    color: var(--third-color)
+}
+
+.side-nav img {
+    margin-top: 30px;
+    max-width: 100%;
+    width: 70%;
+}
+
+.table-wrapper {
+    max-height: 200px; 
+    overflow-y: auto;
 }
 
 table {
@@ -96,14 +136,14 @@ th:nth-child(5), td:nth-child(5) { width: 20%; } /* Address */
 th:nth-child(6), td:nth-child(6) { width: 10%; } /* Action */
 
 th {
-    background-color: #007BFF;
-    color: white;
+    color: var(--second-color);
+    background-color: var(--fourth-color);
 }
 
 .delete-btn {
     padding: 5px 10px;
     color: white;
-    background-color: red;
+    background-color: var(--fourth-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -120,7 +160,7 @@ th {
     width: auto;
     font-size: 15px;
     font-weight: 800;
-    background-color: #40d371;
+    background-color: var(--third-color);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -130,7 +170,8 @@ th {
 }
 
 .buttonAdd:hover {
-    background-color: #399e5b;
+    background-color: var(--main-color);
+    color: var(--fourth-color)
 }
 
 .disconnectBtn {
@@ -138,7 +179,7 @@ th {
     height: 30px;
     font-weight: 800;
     color: white;
-    background-color: red;
+    background-color: var(--fourth-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -153,14 +194,20 @@ th {
 .side-nav a {
     border-radius: 8px;
     padding: 6px 8px 6px 8px;
-    margin-top: 10px;
+    margin-top: 15px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    font-weight: 500;
+    color: var(--fourth-color);
     display: block;
+}
+/* Style for selected link */
+.side-nav a.selected {
+    background-color: var(--third-color);
+    color: var(--second-color);
 }
 
 .side-nav a:hover {
-    background-color: red;
-    color: #f1f1f1;
+    background-color: var(--main-color);
+    color: var(--second-color)
 }

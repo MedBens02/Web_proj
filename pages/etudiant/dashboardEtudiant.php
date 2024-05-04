@@ -30,6 +30,7 @@ include_once('../../models/user.php');
         <div class="data-section">
             <h2>List des cours</h2>
         </div>
+        
     </div>
 </body>
 </html>

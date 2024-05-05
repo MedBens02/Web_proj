@@ -21,7 +21,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 </head>
 <body>
     <div class="dash-title">
-        <h1>Prof Dashboard</h1>
+        <h1>Gerer vos cours</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -32,7 +32,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
         <a href="settings.php" id="settings-link">Settings</a>
-        <a href="help.php" id="help-link">Help</a>
+        <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
     

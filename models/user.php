@@ -40,6 +40,18 @@ class User {
         $stmt->close();
         $stmt = null;
     }
+
+    public static function changePassword($prfid, $newPass) {
+        try {
+            $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET mot_de_passe = :password WHERE id = :id');
+            $stmt->bindParam(':password', $newPass);
+            $stmt->bindParam(':id', $prfid);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
 
 class Etudiant extends User {

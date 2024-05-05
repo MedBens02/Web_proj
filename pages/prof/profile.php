@@ -113,6 +113,9 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <script src="../../scripts/changePass.js" type="module"></script>
     <script src="../../scripts/modifyProfile.js" type="module"></script>
 </body>
+<footer class="footer">
+    Copyright © 2024 ENSA Tetouan.
+</footer>
 </html>
 
 

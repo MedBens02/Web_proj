@@ -135,5 +135,13 @@ class Prof extends User {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+    public static function removeStudentFromCourse($courseId, $studentId) {
+    $stmt = DB::connect()->prepare('DELETE FROM enrollement WHERE id_cours = :courseId AND id_etd = :studentId');
+    $stmt->bindParam(':courseId', $courseId);
+    $stmt->bindParam(':studentId', $studentId);
+    return $stmt->execute();
+}
+
+
     // Additional methods specific to Prof can be added here
 }

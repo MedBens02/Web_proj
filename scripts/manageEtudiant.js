@@ -45,18 +45,18 @@ const errorMsg = document.getElementById('failed');
 const successMsg = document.getElementById('success');
 
 function fetchStudents(courseId) {
-    // Clear previous messages
-    errorMsg.hidden = true;
-    successMsg.hidden = true;
-
     fetch(`../../controllers/fetchStudentsWithEnrollment.php?courseId=${courseId}`)
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('students');
-        let html = `<table><tr><th></th><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th></tr>`;
+        let html = `<table class="check-table"><tr><th>Action</th><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th></tr>`;
         data.forEach(student => {
+            let actionHtml = student.is_enrolled ?
+                `<span class="remove-enrollment" data-student-id="${student.id}" title="Remove enrollment">×</span>` :
+                `<input type="checkbox" name="student" value="${student.id}">`;
+
             html += `<tr>
-                        <td>${student.is_enrolled ? '' : `<input type="checkbox" name="student" value="${student.id}">`}</td>
+                        <td>${actionHtml}</td>
                         <td>${student.id}</td>
                         <td>${student.nom}</td>
                         <td>${student.prenom}</td>
@@ -66,13 +66,23 @@ function fetchStudents(courseId) {
         });
         html += `</table>`;
         container.innerHTML = html;
+
+        // Add click event listeners for removing enrollment
+        document.querySelectorAll('.remove-enrollment').forEach(item => {
+            item.addEventListener('click', function() {
+                removeEnrollment(courseId, this.getAttribute('data-student-id'));
+            });
+        });
     });
 }
+
 
 
 function enrollStudents() {
     const selectedStudents = Array.from(document.querySelectorAll('input[name="student"]:checked')).map(input => input.value);
     const courseId = document.getElementById('cours').value;
+    errorMsg.hidden = true;
+    successMsg.hidden = true;
 
     // Check if any students are selected
     if (selectedStudents.length === 0) {
@@ -97,4 +107,24 @@ function enrollStudents() {
     })
     .catch(error => console.error('Error:', error));
     fetchStudents(courseId);
+}
+
+function removeEnrollment(courseId, studentId) {
+    fetch('../../controllers/removeEnrollment.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ courseId: courseId, studentId: studentId })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            fetchStudents(courseId); // Refresh the list to reflect changes
+            alert("Student enrollment removed successfully!");
+        } else {
+            alert("Failed to remove enrollment.");
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }

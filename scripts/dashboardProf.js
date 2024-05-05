@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.href.includes('dashboard') || window.location.href.includes('manageEtud'))
         fetchStudents();
-    if (window.location.href.includes('manageCours'))
+    if (window.location.href.includes('dashboard') || window.location.href.includes('manageCours'))
         fetchCourses();
 });
 

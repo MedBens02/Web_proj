@@ -41,7 +41,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <div class="tables-cont">
         <div class="contn">
         <h2>Liste des etudiants</h2>
-        <div id="students" class="table-wrapper course-table"></div>
+        <div id="students" class="table-wrapper"></div>
         </div>
     </div>
     <div class="tables-two-cont">

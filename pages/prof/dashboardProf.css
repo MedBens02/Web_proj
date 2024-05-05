@@ -40,10 +40,20 @@ h1, h2 {
 }
 
 .footer {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    grid-column: sidebar-start / content-end;
+    grid-row: footer-start / end;
+    display: flex;
+    justify-content: center;  /* Horizontally center the content */
+    align-items: center;      /* Vertically center the content */
     grid-row: footer-start / footer-end;
-    text-align: center;
     font-weight: 600;
     font-size: 15px;
+    padding: 10px; /* Optional: Add padding for better spacing */
+    width: 100%; /* Ensure the footer takes the full width of its container */
+    background-color: var(--second-color); /* Optional: Background color */
+    color: var(--main-dark-color); /* Optional: Text color */
 }
 
 .dash-title {
@@ -87,8 +97,9 @@ h1, h2 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     grid-column: sidebar-start / sidebar-end;
-    grid-row: start / end;
-
+    grid-row: start / content-two-end;
+    overflow-y: auto;
+    max-height: 100%;
 }
 .side-nav h2 {
     padding-top: 15px;
@@ -114,8 +125,8 @@ h1, h2 {
 }
 
 .table-wrapper {
+    max-height: 25vh;
     margin-top: 10px;
-    max-height: 250px; 
     overflow-y: auto;
 }
 

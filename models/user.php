@@ -108,5 +108,32 @@ class Prof extends User {
         return $stmt->fetchAll(PDO::FETCH_OBJ);  // Fetch all students as objects
     }
 
+    public static function getCourses($profId) {
+        $stmt = DB::connect()->prepare('SELECT id, name FROM courses WHERE prof_id = ?');
+        $stmt->execute([$profId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function enrollStudents($courseId, $studentIds) {
+        $stmt = DB::connect()->prepare('INSERT INTO enrollement (id_cours, id_etd) VALUES (?, ?)');
+        foreach ($studentIds as $id) {
+            $stmt->execute([$courseId, $id]);
+        }
+        return true;
+    }
+
+    public static function getStudentsWithEnrollmentStatus($courseId) {
+    $db = DB::connect();
+    $sql = "SELECT etudiant.*, 
+            CASE WHEN enrollement.id_cours IS NULL THEN 0 ELSE 1 END AS is_enrolled
+            FROM etudiant
+            LEFT JOIN enrollement ON etudiant.id = enrollement.id_etd AND enrollement.id_cours = :courseId";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
     // Additional methods specific to Prof can be added here
 }

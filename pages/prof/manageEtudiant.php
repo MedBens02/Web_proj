@@ -17,7 +17,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardProf.css">
-    <link rel="stylesheet" href="manageCours.css">
+    <link rel="stylesheet" href="manageEtudiant.css">
 </head>
 <body>
     <div class="dash-title">
@@ -37,44 +37,29 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <a href="../logout.php">Logout</a>
     </div>
     
-    <div class="tables-cont">
-        <div class="contn">
-        <h2>Ajouter un cours</h2>
-        <form id="coursForm" novalidate>
-                    <div id="failed" class="error-alert" hidden></div>
-                    <div id="success" class="success-alert" hidden></div>
-
-                    <div class="form-group">
-                        <label for="title">Titre:</label>
-                        <input id="title" type="text" name="title" class="form-input" required>
-                        <small id="titleError" class="error-message" hidden></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mdp">Description:</label>
-                        <input id="desc" type="text" name="desc" class="form-input" required>
-                        <small id="descError" class="error-message" hidden></small>
-                    </div>
-
-                    <div class="form-group">
-                        <button class="buttonAdd">Ajouter cours</button>
-                    </div>
-            </form>
-        
-        </div>
-    </div>
             
-    <div class="tables-two-cont">
+    <div class="tables-cont">
         <div class="contn">
         <h2>Liste des etudiants</h2>
         <div id="students" class="table-wrapper course-table"></div>
         </div>
     </div>
-    
-    
-    
-    <script src="../../scripts/dashboardProf.js"></script>
-    <script src="../../scripts/manageCours.js" type="module"></script>
+    <div class="tables-two-cont">
+        <div class="contn">
+        <h2>Liste des cours</h2>
+
+        <div id="failed" class="error-alert" hidden></div>
+        <div id="success" class="success-alert" hidden></div>
+
+            <div class="form-group">
+                <label for="cours">Cours:</label>
+                <select id="cours" name="cours" class="form-input">
+                </select>
+                <button id="enrollButton" class="buttonAdd">Ajouter etudiants</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../scripts/manageEtudiant.js" type="module"></script>
 </body>
 
 <footer class="footer">

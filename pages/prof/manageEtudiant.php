@@ -21,7 +21,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 </head>
 <body>
     <div class="dash-title">
-        <h1>Gerer vos cours</h1>
+        <h1>Gerer vos etudiants</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->

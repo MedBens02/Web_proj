@@ -26,20 +26,22 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         <h1>Student's Dashboard</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
+    <!-- Side Navigation Menu -->
     <div class="side-nav">
         <img src="../pfp.png">
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
+        <h3><?php echo $_SESSION['email']; ?></h3>
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardEtudiant.php" id="dashboard-link">Dashboard</a>
-        <a href="myCourses.php" id="manage-cours-link">See your Courses</a>
+        <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
         <a href="settings.php" id="settings-link">Settings</a>
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
     <div class="tables-cont">
         <div class="contn">
-        <h2>List des cours</h2>
-        <div id="std" class="table-wrapper"></div>
+        <h2>List de mes cours</h2>
+        <div id="cours" class="table-wrapper"></div>
         </div>
     </div>
         
@@ -50,6 +52,18 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
 </footer>
 </html>
 <script type="text/javascript">
+    // Get the current page URL
+    const currentPageUrl = window.location.href;
 
-//Prints his courses
+    // Get the sidebar links
+    const sidebarLinks = document.querySelectorAll('.side-nav a');
+
+    // Loop through the sidebar links
+    sidebarLinks.forEach(link => {
+        // Check if the link href matches the current page URL
+        if (link.href === currentPageUrl) {
+            // Add a class to highlight the selected link
+            link.classList.add('selected');
+        }
+    });
 </script>

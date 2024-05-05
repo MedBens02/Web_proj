@@ -127,6 +127,7 @@ function sendXHR() {
 
 function handleResponse(response) {
     const errorMsg = document.getElementById("failed");
+    errorMsg.hidden = true;
     const userRole = document.getElementById("userRole").value; // Get the role from the hidden input
     if (response === "okEtudiant") {
         console.log("Etudiant added");

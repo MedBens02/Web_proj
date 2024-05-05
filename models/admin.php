@@ -22,7 +22,7 @@ class Admin {
     }
 
     static public function getAllEtudiants() {
-        $stmt = DB::connect()->prepare('SELECT * FROM etudiant');
+        $stmt = DB::connect()->prepare('SELECT * FROM etudiant ORDER BY request DESC');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

@@ -95,6 +95,11 @@ h1, h2 {
     color: var(--fourth-color);
     font-size: 28px;
 }
+.side-nav h3 {
+    padding-top: 15px;
+    color: var(--third-color);
+    font-size: 18px;
+}
 
 .side-nav h4 {
     padding-top: 10px;

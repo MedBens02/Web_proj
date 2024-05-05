@@ -3,8 +3,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/proj/database/DB.php');
 
 class Cours {
 
-    
-  
     public static function check($login, $prfid){
         $conn = DB::connect();
         $stmt = $conn->prepare('SELECT * FROM modules WHERE nom = :nom AND prof_id = :id');

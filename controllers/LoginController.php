@@ -40,6 +40,7 @@ switch ($role) {
         } else {
             echo 'error';
         }
+        break;
 
     case 'prof':
         $prf = Prof::loginUser($login);

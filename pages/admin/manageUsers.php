@@ -20,7 +20,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <body>
     <div class="dash-title">
         <h1>Admin Dashboard</h1>
-        <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
+        <div id="failed" class="error-alert" hidden></div>
+
     </div>
     <!-- Side Navigation Menu -->
     <div class="side-nav">
@@ -58,7 +59,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 
 <footer class="footer">
     Copyright © 2024 ENSA Tetouan.
-
 </footer>
 </html>
 

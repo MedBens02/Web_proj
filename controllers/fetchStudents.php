@@ -12,9 +12,9 @@ if (!isset($_SESSION['logged']) || ($_SESSION['role'] !== 'admin' && $_SESSION['
 }
 
 try {
-	if ($_SESSION['role'] !== 'admin')
+	if ($_SESSION['role'] === 'admin')
     	$students = Admin::getAllEtudiants();
-    else if ($_SESSION['role'] !== 'prof')
+    else if ($_SESSION['role'] === 'prof')
     	$students = Prof::getAllEtudiants();
     echo json_encode($students);
 } catch (Exception $e) {

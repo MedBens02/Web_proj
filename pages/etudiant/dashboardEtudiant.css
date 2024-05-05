@@ -1,5 +1,4 @@
 /* Basic reset for margin and padding */
-/* Basic reset for margin and padding */
 * {
     margin: 0;
     padding: 0;
@@ -36,7 +35,6 @@ body {
 
 }
 
-
 h1, h2 {
     color: var(--fourth-color);
 }
@@ -63,6 +61,14 @@ h1, h2 {
     grid-column: content-start / content-end;
     grid-row: content-start / content-two-start;
 }
+.tables-two-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    grid-column: content-start / content-end;
+    grid-row: content-two-start / content-two-end;
+}
+
 .contn {
     height: 100%;
     background: var(--second-color);
@@ -89,6 +95,12 @@ h1, h2 {
     color: var(--fourth-color);
     font-size: 28px;
 }
+.side-nav h3 {
+    padding-top: 15px;
+    color: var(--third-color);
+    font-size: 18px;
+}
+
 .side-nav h4 {
     padding-top: 10px;
     padding-bottom: 50px;
@@ -100,6 +112,7 @@ h1, h2 {
     max-width: 100%;
     width: 70%;
 }
+
 .table-wrapper {
     margin-top: 10px;
     max-height: 250px; 
@@ -108,7 +121,7 @@ h1, h2 {
 
 table {
     width: 100%; /* Table width to fill subcontainer */
-    min-width: 800px;
+    min-width: 600px;
     border-collapse: collapse;
     margin-top: 20px;
     table-layout: fixed; /* This ensures the columns have fixed widths regardless of content */
@@ -133,6 +146,7 @@ th:nth-child(5), td:nth-child(5) { width: 20%; } /* Address */
 .course-table th:nth-child(4), .course-table td:nth-child(4) {
     width: 15%;
 }
+
 th {
     position: sticky;
     top: 0;
@@ -141,19 +155,38 @@ th {
     background-color: var(--fourth-color);
 }
 
-button {
-    background-color: #007BFF;
+.delete-btn {
+    padding: 5px 10px;
     color: white;
+    background-color: var(--fourth-color);
     border: none;
-    padding: 10px 20px;
-    text-transform: uppercase;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+
+.buttonAdd {
+    margin-top: 15px;
+    width: auto;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: var(--third-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonAdd:hover {
+    background-color: var(--main-color);
+    color: var(--fourth-color)
 }
 
 .disconnectBtn {
@@ -172,6 +205,7 @@ button:hover {
 .disconnectBtn:hover {
     background-color: darkred;
 }
+
 .side-nav a {
     border-radius: 8px;
     padding: 6px 8px 6px 8px;
@@ -192,4 +226,3 @@ button:hover {
     background-color: var(--main-color);
     color: var(--second-color)
 }
-/*

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchStudents();
 });
 
+
+
 function fetchProfs() {
     fetch('../../controllers/fetchProfs.php')
     .then(response => response.json())
@@ -20,6 +22,7 @@ function fetchProfs() {
                         <td>${prof.adresse}</td>
                         <td><button class='delete-btn' onclick='confirmDeleteProf(${prof.id})'>Delete</button></td>
                      </tr>`;
+
         });
         html += `</table>`;
         container.innerHTML = html;
@@ -27,6 +30,15 @@ function fetchProfs() {
 }
 
 function fetchStudents() {
+    if (window.location.href.includes('manage')) {
+        const errorMsg = document.getElementById('failed');
+        errorMsg.hidden = true;
+    }
+
+    const notif = document.getElementById('notif');
+        notif.hidden = true;
+
+
     fetch('../../controllers/fetchStudents.php')
     .then(response => response.json())
     .then(students => {
@@ -34,17 +46,35 @@ function fetchStudents() {
         let html = `<table>`;
         html += `<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th><th>Action</th></tr>`;
         students.forEach(student => {
-            html += `<tr>
+            
+            if (window.location.href.includes('manage')) {
+                if (student.request) {
+                    html += `<tr>
+                        <td>${student.id} <span>!<span/></td>
+                    `;
+                    const errorMsg = document.getElementById('failed');
+                    errorMsg.textContent = "Certains etudiants ont demandes une suppression de compte";
+                    errorMsg.hidden = false;
+                } else {
+                    html += `<tr>
                         <td>${student.id}</td>
-                        <td>${student.nom}</td>
+                    `;
+                }
+            }
+
+            if (student.request) {
+                    const notif = document.getElementById('notif');
+                    notif.hidden = false;
+            }
+            html += `<td>${student.nom}</td>
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
                         <td>${student.adresse}</td>
                         <td><button class='delete-btn' onclick='confirmDeleteStudent(${student.id})'>Delete</button></td>
-                     </tr>`;
+                        </tr>`;
         });
         html += `</table>`;
-        container.innerHTML = html;
+        container.innerHTML = html;  
     });
 }
 

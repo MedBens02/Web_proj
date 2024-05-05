@@ -57,7 +57,8 @@ function sendXHR() {
 
 function handleResponse(response) {
     // Handle the response from the server
-    const cleanResponse = response;  
+    const cleanResponse = response; 
+    successMsg.hidden = true; 
 
     if (cleanResponse === "wrongPass") {
         displayError(errorMsg, "Vous avez entrez un mot de passe invalide");

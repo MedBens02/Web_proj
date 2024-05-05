@@ -27,10 +27,12 @@ class User {
     }
 
 	public static function addUser($data) {
-        $stmt = DB::connect()->prepare('INSERT INTO ' . static::$tableName . ' (nom, prenom, adresse, email, mot_de_passe) VALUES (:nom, :prenom, :adresse, :email, :mot_de_passe)');
-        foreach ($data as $key => $value) {
-            $stmt->bindParam(':'.$key, $data[$key]);
-        }
+        $stmt = DB::connect()->prepare('INSERT INTO ' . static::$tableName . ' (nom, prenom, adresse, email, mot_de_passe, request) VALUES (:nom, :prenom, :adresse, :email, :mot_de_passe, 0)');
+        $stmt->bindParam(':nom', $data['nom']);
+        $stmt->bindParam(':prenom', $data['prenom']);
+        $stmt->bindParam(':adresse', $data['adresse']);
+        $stmt->bindParam(':email', $data['email']);
+        $stmt->bindParam(':mot_de_passe', $data['mot_de_passe']);
         
         if ($stmt->execute()) {
             return 'ok';
@@ -52,10 +54,47 @@ class User {
             return false;
         }
     }
+
+    public static function modifyUser($prfid, $data) {
+        try {
+            $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET nom = :nom, prenom = :prenom, adresse = :adresse, email = :email WHERE id = :id');
+            
+            $stmt->bindParam(':nom', $data['nom']);
+            $stmt->bindParam(':prenom', $data['prenom']);
+            $stmt->bindParam(':adresse', $data['adresse']);
+            $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':id', $prfid);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public static function requestDelete($prfid) {
+    try {
+        $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET request = 1 WHERE id = :id');
+        $stmt->bindParam(':id', $prfid);
+        $stmt->execute();
+        $stmt = null;
+        return 'ok';
+    } catch (PDOException $e) {
+        error_log('Failed to request deletion: ' . $e->getMessage());
+        return 'error';
+    }
+}
 }
 
 class Etudiant extends User {
     protected static $tableName = 'etudiant';
+
+    static public function getMyCourses($stdid) {
+        $stmt = DB::connect()->prepare('SELECT m.id, m.nom, m.description FROM modules m
+            JOIN enrollement e ON m.id = e.id_cours
+            WHERE e.id_etd = ?');
+        $stmt->execute([$stdid]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     // Additional methods specific to Etudiant can be added here
 }

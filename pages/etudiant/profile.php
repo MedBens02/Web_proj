@@ -3,7 +3,7 @@
 
 session_start();
 
-if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
+if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
     // Redirect them to login page or show an error
     header('Location: ../login.php');
     exit;
@@ -16,12 +16,12 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
-    <link rel="stylesheet" href="dashboardProf.css">
+    <link rel="stylesheet" href="dashboardEtudiant.css">
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <div class="dash-title">
-        <h1>Prof Dashboard</h1>
+        <h1>Etudiant Dashboard</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -30,9 +30,9 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <h3><?php echo $_SESSION['email']; ?></h3>
         <h4><?php echo $_SESSION['role']; ?></h4>
-        <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
+        <a href="dashboardEtudiant.php" id="dashboard-link">Dashboard</a>
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
-        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
+        <a href="settings.php" id="settings-link">Settings</a>
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>

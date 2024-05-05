@@ -13,8 +13,8 @@ require_once('../models/user.php');
 	$data = array(
 		'nom' =>  $nom ,
 		'prenom' =>  $surname ,
-		'email' =>  $login ,
 		'adresse' => $address ,
+		'email' =>  $login ,
 		'mot_de_passe' => $mdp ,
 	);
 

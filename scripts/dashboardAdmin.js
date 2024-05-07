@@ -14,15 +14,27 @@ function fetchProfs() {
         let html = `<table>`;
         html += `<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th><th>Action</th></tr>`;
         profs.forEach(prof => {
-            html += `<tr>
-                        <td>${prof.id}</td>
-                        <td>${prof.nom}</td>
+            if (prof.request) {
+                html += `<tr>
+                    <td>${prof.id} <span>!<span/></td>
+                `;
+                const notif = document.getElementById('notif');
+                notif.hidden = false;
+                const errorMsg = document.getElementById('failed');
+                errorMsg.textContent = "Certains utilisateurs ont demandes une suppression de compte";
+                errorMsg.hidden = false;
+            } else {
+                html += `<tr>
+                    <td>${prof.id}</td>
+                    `;
+            }
+            
+            html += `<td>${prof.nom}</td>
                         <td>${prof.prenom}</td>
                         <td>${prof.email}</td>
                         <td>${prof.adresse}</td>
                         <td><button class='delete-btn' onclick='confirmDeleteProf(${prof.id})'>Delete</button></td>
-                     </tr>`;
-
+                        </tr>`;
         });
         html += `</table>`;
         container.innerHTML = html;
@@ -47,25 +59,21 @@ function fetchStudents() {
         html += `<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th><th>Action</th></tr>`;
         students.forEach(student => {
             
-            if (window.location.href.includes('manage')) {
-                if (student.request) {
-                    html += `<tr>
-                        <td>${student.id} <span>!<span/></td>
-                    `;
-                    const errorMsg = document.getElementById('failed');
-                    errorMsg.textContent = "Certains etudiants ont demandes une suppression de compte";
-                    errorMsg.hidden = false;
-                } else {
-                    html += `<tr>
-                        <td>${student.id}</td>
-                    `;
-                }
+            if (student.request) {
+                html += `<tr>
+                    <td>${student.id} <span>!<span/></td>
+                `;
+                const notif = document.getElementById('notif');
+                notif.hidden = false;
+                const errorMsg = document.getElementById('failed');
+                errorMsg.textContent = "Certains utilisateurs ont demandes une suppression de compte";
+                errorMsg.hidden = false;
+            } else {
+                html += `<tr>
+                    <td>${student.id}</td>
+                `;
             }
 
-            if (student.request) {
-                    const notif = document.getElementById('notif');
-                    notif.hidden = false;
-            }
             html += `<td>${student.nom}</td>
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
@@ -106,6 +114,7 @@ function removeProf(profId) {
             alert('Failed to delete professor.');
         }
     });
+    fetchProfs();
 }
 
 function removeStudent(stdId) {
@@ -123,4 +132,5 @@ function removeStudent(stdId) {
             alert('Failed to delete student.');
         }
     });
+    fetchStudents();
 }

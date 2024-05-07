@@ -121,9 +121,11 @@ function removeEnrollment(courseId, studentId) {
     .then(result => {
         if (result.success) {
             fetchStudents(courseId); // Refresh the list to reflect changes
-            alert("Student enrollment removed successfully!");
+            successMsg.textContent = "Etudiant enlove avec succees";
+            successMsg.hidden = false;
         } else {
-            alert("Failed to remove enrollment.");
+            errorMsg.textContent = "Erreur lors la supression de l'etudiant";
+            errorMsg.hidden = false;
         }
     })
     .catch(error => console.error('Error:', error));

@@ -90,6 +90,7 @@ address.addEventListener("input", () => {
 });
 
 
+
 form.addEventListener("submit", function(event) {
     event.preventDefault();  // Prevent the default form submission
 
@@ -132,14 +133,18 @@ function handleResponse(response) {
     if (response === "okEtudiant") {
         console.log("Etudiant added");
         if (userRole === "admin") {
-            window.location.href = "../../pages/admin/dashboardAdmin.php"; // Redirect to admin dashboard if admin
+            const successMsg = document.getElementById("success");
+            successMsg.textContent = "Etudiant ajoute avec succes";
+            successMsg.hidden = false;
         } else {
             window.location.href = "../pages/login.php"; // Redirect to login page for others
         }
     } else if (response === "okProf") {
         console.log("Prof added");
         if (userRole === "admin") {
-            window.location.href = "../../pages/admin/dashboardAdmin.php"; // Redirect to admin dashboard if admin
+            const successMsg = document.getElementById("success");
+            successMsg.textContent = "Prof ajoute avec succes";
+            successMsg.hidden = false;
         } else {
             window.location.href = "../pages/login.php"; // Redirect to login page for others
         }

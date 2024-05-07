@@ -1,8 +1,28 @@
+:root {
+    --main-color: #CDE8E5;
+    --second-color: #EEF7FF;
+    --third-color: #7AB2B2;
+    --fourth-color: #4D869C;
+
+    /* Blue and white */
+
+    --main-color: #DBE2EF;
+    --second-color: #F9F7F7;
+    --third-color: #3F72AF;
+    --fourth-color: #112D4E;
+
+
+    --main-dark-color: #003C43;
+    --second-dark-color: #135D66;
+    --third-dark-color: #77B0AA;
+    --fourth-dark-color: #E3FEF7;
+}
+
 /* General Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--main-color);
+    color: var(--third-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -18,7 +38,7 @@ body {
 }
 
 .login-container {
-    background-color: #fff;
+    background-color: var(--second-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -36,21 +56,30 @@ body {
 
 .form-title {
     font-size: 1.5rem;
-    color: #007bff;
+    font-weight: bold;
+    color: var(--fourth-color);
     margin-bottom: 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    position: relative; /* Position the error message relative to its parent .form-group */
+
+.form-group label {
+    display: inline-block;
+    width: 150px;
+    margin-top: 3%;
+    color: var(--fourth-color);
+    font-weight: 600;
 }
+
 
 .form-input {
     width: 90%;
+    background-color: var(--main-color);
     padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    margin-top: 1%;
+    border: 1px solid var(--fourth-color);
     border-radius: 4px;
+    color: var(--fourth-color);
+    font-weight: bold;
 }
 
 .error-message {
@@ -61,20 +90,22 @@ body {
 }
 
 .submit-btn {
+    margin-top: 15px;
+    width: auto;
+    font-size: 15px;
     font-weight: 800;
-    flex: 1;              /* Make each button grow and take up equal space */
-    padding: 10px;
-    margin: 5px;          /* Add margin to create space between buttons */
-    background-color: #007bff;
+    background-color: var(--third-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--main-color);
+    color: var(--fourth-color)
 }
 
 .error-alert {

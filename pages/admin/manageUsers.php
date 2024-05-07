@@ -30,15 +30,15 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardAdmin.php" id="dashboard-link">Dashboard</a>
         <a href="manageUsers.php" id="manage-users-link">Manage Users  <span id="notif" hidden>!</span></a>
-        <a href="settings.php" id="settings-link">Settings</a>
-        <a href="help.php" id="help-link">Help</a>
+        <a href="addUsers.php" id="addUsers-link">Ajouter Users</a>
+        <a href="chat.php" id="chat-link">Chat</a>
         <a href="../logout.php">Logout</a>
     </div>
     
     <div class="tables-cont">
         <div class="contn">
         <h2>List des Étudiants</h2>
-        <button class="buttonAdd" onclick="window.location.href='registerEtudiant.php';">Ajouter etudiant</button>
+        <button class="buttonAdd" onclick="window.location.href='addUsers.php';">Ajouter etudiant</button>
         <div id="students" class="table-wrapper"></div>
         </div>
     </div>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
     <div class="tables-two-cont">
         <div class="contn">
         <h2>List des Professeurs</h2>
-        <button class="buttonAdd" onclick="window.location.href='registerProf.php';">Ajouter Prof</button>
+        <button class="buttonAdd" onclick="window.location.href='addUsers.php';">Ajouter Prof</button>
         <div id="profs" class="table-wrapper"></div>
         </div>
     </div>

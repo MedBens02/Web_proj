@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 
 if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
@@ -7,30 +8,49 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../login.php');
     exit;
 }
-?>
 
-<!doctype html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../style.css" />
-    <title>Plateforme Scolarité</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <title>Prof Dashboard</title>
+    <link rel="stylesheet" href="dashboardAdmin.css">
+    <link rel="stylesheet" href="addUsers.css">
 </head>
 <body>
-    <div class="wrapper">
-        <section class="login-container">
-            <form id="registerForm" class="login-form" novalidate>
-                <fieldset class="login-fieldset">
-                    <legend class="form-title">Ajouter un Professeur</legend>
+    <div class="dash-title">
+        <h1>Ajouter users</h1>
+        <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
+    </div>
+    <!-- Side Navigation Menu -->
+    <div class="side-nav">
+        <img src="../pfp.png">
+        <h2><?php echo $_SESSION['nom_complet']; ?></h2>
+        <h4><?php echo $_SESSION['role']; ?></h4>
+        <a href="dashboardAdmin.php" id="dashboard-link">Dashboard</a>
+        <a href="manageUsers.php" id="manage-users-link">Manage Users  <span id="notif" hidden>!</span></a>
+        <a href="addUsers.php" id="addUsers-link">Ajouter Users</a>
+        <a href="chat.php" id="chat-link">Chat</a>
+        <a href="../logout.php">Logout</a>
+    </div>
 
-                    <input type="hidden" id="userRole" value="<?php echo $_SESSION['role']; ?>">
 
+    <div class="tables-cont">
+        <div class="contn">
+        <h2>Modifer votre profile</h2>
+        <form id="registerForm" class="register-form" novalidate>
                     <div id="failed" class="error-alert" hidden></div>
+                    <div id="success" class="success-alert" hidden></div>
+
+                    <input type="hidden" id="userRole" value="admin">
 
                     <div class="form-group">
                         <label for="userType">Type de compte:</label>
                         <select id="userType" name="userType" class="form-input">
                             <option value="prof">Prof</option>
+                            <option value="etudiant">Etudiant</option>
                         </select>
                     </div>
 
@@ -65,19 +85,33 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="submit-btn">Ajouter prof</button>
-                        <button id="annuler" type="button" class="submit-btn">Annuler</button>
-                        <script type="text/javascript">
-                            const annuler = document.getElementById('annuler');
-                            annuler.addEventListener('click', function() {
-                                window.location.href = './dashboardAdmin.php'; // Adjust the path as necessary
-                            });
-                        </script>
+                        <button type="submit" class="buttonAdd">Creer un compte</button>
                     </div>
-                </fieldset>
             </form>
-        </section>
+        
+        </div>
     </div>
     <script src="../../scripts/register.js" type="module"></script>
 </body>
+<footer class="footer">
+    Copyright © 2024 ENSA Tetouan.
+</footer>
 </html>
+
+
+<script type="text/javascript">
+    // Get the current page URL
+    const currentPageUrl = window.location.href;
+
+    // Get the sidebar links
+    const sidebarLinks = document.querySelectorAll('.side-nav a');
+
+    // Loop through the sidebar links
+    sidebarLinks.forEach(link => {
+        // Check if the link href matches the current page URL
+        if (link.href === currentPageUrl) {
+            // Add a class to highlight the selected link
+            link.classList.add('selected');
+        }
+    });
+</script>

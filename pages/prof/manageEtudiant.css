@@ -34,7 +34,7 @@ body {
 
 .table-wrapper {
     margin-top: 10px;
-    max-height: 50vh; 
+    max-height: 48vh; 
     overflow-y: auto;
 }
 

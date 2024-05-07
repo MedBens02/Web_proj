@@ -16,7 +16,7 @@ class Admin {
     }
 
     static public function getAllProfs() {
-        $stmt = DB::connect()->prepare('SELECT * FROM professeurs');
+        $stmt = DB::connect()->prepare('SELECT * FROM professeurs ORDER BY request DESC');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

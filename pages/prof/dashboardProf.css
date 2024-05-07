@@ -12,12 +12,12 @@
     --fourth-color: #4D869C;
 
     /* Blue and white */
-    /*
+
     --main-color: #DBE2EF;
     --second-color: #F9F7F7;
     --third-color: #3F72AF;
     --fourth-color: #112D4E;
-    */
+
 
     --main-dark-color: #003C43;
     --second-dark-color: #135D66;
@@ -123,6 +123,7 @@ h1, h2 {
 .side-nav h4 {
     padding-top: 10px;
     padding-bottom: 50px;
+    opacity: 60%;
     color: var(--third-color)
 }
 
@@ -230,7 +231,7 @@ th {
     padding: 6px 8px 6px 8px;
     margin-top: 15px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: 500;
     color: var(--fourth-color);
     display: block;

@@ -38,14 +38,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <a href="../logout.php">Logout</a>
     </div>
     
-            
     <div class="tables-cont">
-        <div class="contn">
-        <h2>Liste des etudiants</h2>
-        <div id="students" class="table-wrapper"></div>
-        </div>
-    </div>
-    <div class="tables-two-cont">
         <div class="contn">
         <h2>Liste des cours</h2>
 
@@ -60,6 +53,14 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
             </div>
         </div>
     </div>
+            
+    <div class="tables-two-cont">
+        <div class="contn">
+        <h2>Liste des etudiants</h2>
+        <div id="students" class="table-wrapper"></div>
+        </div>
+    </div>
+
     <script src="../../scripts/manageEtudiant.js" type="module"></script>
 </body>
 

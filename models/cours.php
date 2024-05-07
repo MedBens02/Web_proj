@@ -39,7 +39,36 @@ class Cours {
         $stmt->bindParam(':id', $crsId);
         return $stmt->execute();
     }
-    
+
+    public static function getPartsByCourseId($courseId) {
+    $stmt = DB::connect()->prepare('SELECT * FROM parties WHERE id_cours = :courseId');
+    $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function toggleViewFlag($partId, $viewFlag) {
+    $stmt = DB::connect()->prepare('UPDATE parties SET view_flag = :viewFlag WHERE id_part = :partId');
+    $stmt->bindParam(':viewFlag', $viewFlag, PDO::PARAM_BOOL);
+    $stmt->bindParam(':partId', $partId, PDO::PARAM_INT);
+    return $stmt->execute();
+    }
+
+    public static function addPart($courseId, $title, $filePath, $viewFlag) {
+    $stmt = DB::connect()->prepare('INSERT INTO parties (id_cours, title_part, path_part, view_flag) VALUES (:courseId, :title, :filePath, :viewFlag)');
+    $stmt->bindParam(':courseId', $courseId);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':filePath', $filePath);
+    $stmt->bindParam(':viewFlag', $viewFlag);
+    return $stmt->execute();
+    }
+
+    public static function removePart($partId) {
+    $stmt = DB::connect()->prepare('DELETE FROM parties WHERE id_part = :partId');
+    $stmt->bindParam(':partId', $partId, PDO::PARAM_INT);
+    return $stmt->execute();
+    }
+
     
 }
 ?>

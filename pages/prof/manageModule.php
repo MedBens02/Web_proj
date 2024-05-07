@@ -17,7 +17,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardProf.css">
-    <link rel="stylesheet" href="manageEtudiant.css">
+    <link rel="stylesheet" href="manageModule.css">
 </head>
 <body>
     <div class="dash-title">
@@ -40,28 +40,44 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     
     <div class="tables-cont">
         <div class="contn">
-        <h2>Liste des cours</h2>
+            <h2>Liste des cours</h2>
 
-        <div id="failed" class="error-alert" hidden></div>
-        <div id="success" class="success-alert" hidden></div>
+            <div id="failed" class="error-alert" hidden></div>
+            <div id="success" class="success-alert" hidden></div>
 
             <div class="form-group">
                 <label for="cours">Cours:</label>
                 <select id="cours" name="cours" class="form-input">
                 </select>
-                <button id="enrollButton" class="buttonAdd">Ajouter etudiants</button>
             </div>
         </div>
     </div>
+
+    <div class="tables-mid-cont">
+    <div class="contn">
+        <h2>Ajouter une partie</h2>
+        <form id="addPartForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="partTitle">Titre de partie:</label>
+                <input type="text" id="partTitle" class="form-input" name="partTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="partFile">Fichier PDF:</label>
+                <input type="file" id="partFile" class="form-input" name="partFile" accept=".pdf" required>
+            </div>
+            <button type="submit" class="buttonAdd">Ajouter Partie</button>
+        </form>
+    </div>
+</div>
             
     <div class="tables-two-cont">
         <div class="contn">
-        <h2>Liste des etudiants</h2>
-        <div id="students" class="table-wrapper"></div>
+        <h2>Liste des parties</h2>
+        <div id="parts" class="table-wrapper"></div>
         </div>
     </div>
 
-    <script src="../../scripts/manageEtudiant.js" type="module"></script>
+    <script src="../../scripts/manageModule.js" type="module"></script>
 </body>
 
 <footer class="footer">

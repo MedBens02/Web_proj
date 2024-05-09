@@ -47,6 +47,13 @@ class Cours {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getMyPartsByCourseId($courseId) {
+    $stmt = DB::connect()->prepare('SELECT * FROM parties WHERE id_cours = :courseId AND view_flag = 1');
+    $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function toggleViewFlag($partId, $viewFlag) {
     $stmt = DB::connect()->prepare('UPDATE parties SET view_flag = :viewFlag WHERE id_part = :partId');
     $stmt->bindParam(':viewFlag', $viewFlag, PDO::PARAM_BOOL);

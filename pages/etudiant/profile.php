@@ -31,7 +31,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         <h3><?php echo $_SESSION['email']; ?></h3>
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardEtudiant.php" id="dashboard-link">Dashboard</a>
-        <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
+        <a href="mesCours.php" id="mesCours-link">Mes Cours</a>
         <a href="settings.php" id="settings-link">Settings</a>
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>

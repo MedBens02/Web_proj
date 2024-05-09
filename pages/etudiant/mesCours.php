@@ -9,21 +9,19 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
     exit;
 }
 
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <title>Student Dashboard</title>
+    <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardEtudiant.css">
+    <link rel="stylesheet" href="mesCours.css">
 </head>
 <body>
     <div class="dash-title">
-        <h1>Student's Dashboard</h1>
+        <h1>Gerer vos etudiants</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -38,19 +36,38 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
+    
     <div class="tables-cont">
         <div class="contn">
-        <h2>List de mes cours</h2>
-        <div id="cours" class="table-wrapper"></div>
+            <h2>Liste des cours</h2>
+
+            <div id="failed" class="error-alert" hidden></div>
+            <div id="success" class="success-alert" hidden></div>
+
+            <div class="form-group">
+                <label for="cours">Cours:</label>
+                <select id="cours" name="cours" class="form-input">
+                </select>
+            </div>
         </div>
     </div>
-        
-    <script src="../../scripts/dashboardEtudiant.js"></script>
+            
+    <div class="tables-two-cont">
+        <div class="contn">
+        <h2>Liste des parties</h2>
+        <div id="parts" class="table-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../../scripts/mesCours.js" type="module"></script>
 </body>
+
 <footer class="footer">
     Copyright © 2024 ENSA Tetouan.
 </footer>
 </html>
+
+
 <script type="text/javascript">
     // Get the current page URL
     const currentPageUrl = window.location.href;

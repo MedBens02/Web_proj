@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 05, 2024 at 08:29 PM
+-- Generation Time: May 09, 2024 at 05:00 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -58,30 +58,25 @@ CREATE TABLE IF NOT EXISTS `enrollement` (
   PRIMARY KEY (`id`),
   KEY `id_etd` (`id_etd`),
   KEY `id_cours` (`id_cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `enrollement`
 --
 
 INSERT INTO `enrollement` (`id`, `id_cours`, `id_etd`) VALUES
-(2, 13, 36),
-(3, 6, 36),
 (4, 1, 37),
 (7, 9, 37),
-(11, 9, 38),
 (12, 16, 37),
 (14, 3, 38),
 (15, 25, 37),
 (16, 7, 38),
 (17, 7, 37),
 (18, 16, 38),
-(19, 9, 36),
 (21, 1, 39),
 (22, 1, 40),
-(23, 3, 39),
 (24, 9, 41),
-(28, 13, 38);
+(32, 7, 39);
 
 -- --------------------------------------------------------
 
@@ -100,31 +95,32 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `etudiant`
 --
 
 INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
-(36, 'ff', 'ff', 'ff', 'test2@gmail.com', 'ff', 0),
-(37, 'gg', 'ff', 'ff', 'test@gmail.com', 'ff', 0),
+(37, 'gg', 'ff', 'ff', 'test@gmail.com', 'ff', 1),
 (38, 'hh', 'ff', 'ff', 'test3@gmail.com', 'ff', 0),
 (39, 'Espinoza', 'Leslie', '207 Erin Well, West Andreamouth, TN 60441', 'leslie.espinoza@example.com', 'MlH%^U)yH3O', 0),
 (40, 'Wood', 'Julie', '601 Sandra Knolls, Freemanfort, HI 57222', 'julie.wood@example.com', '@k0ytSS$mMSpo', 0),
 (41, 'Cole', 'James', '718 Pope Plaza, Hillmouth, MS 84362', 'james.cole@example.com', 'kVt8nxnzrc', 0),
-(42, 'Hubbard', 'Jasmine', '249 Reynolds Cape Suite 268, Thompsonburgh, NM 84772', 'jasmine.hubbard@example.com', 'uysN0Vm%Um', 0),
 (43, 'Drake', 'Joseph', '24244 Nicole Rapids Suite 892, Jessicaville, AK 03618', 'joseph.drake@example.com', 'LgUpXuPsY9Dim2o', 0),
 (44, 'Summers', 'Ann', '696 Townsend Brook Suite 548, Lake Nicoleshire, CO 35311', 'ann.summers@example.com', 'c%)mgZ0o(ZtreJ', 0),
 (45, 'Gates', 'Rebecca', '629 Clements Loop, Fosterland, MT 89118', 'rebecca.gates@example.com', 'C*BZq51B4k%%', 0),
 (46, 'Brown', 'Keith', '319 Natalie Creek, Shahmouth, NH 90479', 'keith.brown@example.com', 'bniQ1zLZll', 0),
 (47, 'English', 'Trevor', '858 Sullivan Lakes Apt. 060, Nealberg, NJ 45590', 'trevor.english@example.com', 'jYIyUvzDiZS', 0),
 (48, 'Ellison', 'Teresa', '5522 Angela Ports Suite 989, West Natalie, NM 09164', 'teresa.ellison@example.com', 'STq3YM6NC*', 0),
-(50, 'Adams', 'Pedro', '23010 Bennett Union, Lake Erin, ID 29025', 'pedro.adams@example.com', 'tlvxxz', 0),
 (51, 'Porter', 'Angela', '37790 Raymond Forest Apt. 064, Janiceborough, IL 97440', 'angela.porter@example.com', 'ldmruy', 0),
 (52, 'Montes', 'Samantha', '346 Natalie Lock, South Tannerbury, WY 10297', 'samantha.montes@example.com', 'ylrbqw', 0),
 (53, 'Nolan', 'Sean', 'PSC 8987, Box 9629, APO AP 00803', 'sean.nolan@example.com', 'nyazxs', 0),
-(54, 'Moore', 'William', 'USNS Haynes, FPO AE 37471', 'william.moore@example.com', 'unddde', 0);
+(54, 'Moore', 'William', 'USNS Haynes, FPO AE 37471', 'william.moore@example.com', 'unddde', 0),
+(55, 'gg', 'gg', 'gg', 'testAdmin@gg.gg', 'gg', 0),
+(56, 'gg', 'gg', 'gg', 'testAdmin2@gg.gg', 'gg', 0),
+(57, 'gg', 'gg', 'gg', 'testAdmin3@gg.gg', 'gg', 0),
+(58, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0);
 
 -- --------------------------------------------------------
 
@@ -149,7 +145,6 @@ CREATE TABLE IF NOT EXISTS `modules` (
 INSERT INTO `modules` (`id`, `nom`, `description`, `prof_id`) VALUES
 (1, 'JavaScript', 'Cours de JavaScript', 20),
 (3, 'ENGLISH', 'Cours de ENGLISH', 20),
-(6, 'JEE', 'Cours de frameworks de JEE', 22),
 (7, 'PYTHON', 'Cours de PYTHON', 20),
 (8, 'c#', 'Cours de c#', 21),
 (9, 'Français', 'Cours de français', 20),
@@ -158,6 +153,45 @@ INSERT INTO `modules` (`id`, `nom`, `description`, `prof_id`) VALUES
 (16, 'rr', 'rr', 20),
 (23, 'test', 'test', 21),
 (25, 'tt', 'tt', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parties`
+--
+
+DROP TABLE IF EXISTS `parties`;
+CREATE TABLE IF NOT EXISTS `parties` (
+  `id_part` int NOT NULL AUTO_INCREMENT,
+  `id_cours` int NOT NULL,
+  `title_part` varchar(100) NOT NULL,
+  `path_part` varchar(255) NOT NULL,
+  `view_flag` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_part`),
+  KEY `part_cours` (`id_cours`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `parties`
+--
+
+INSERT INTO `parties` (`id_part`, `id_cours`, `title_part`, `path_part`, `view_flag`) VALUES
+(1, 1, 'Introduction to Module 1', '/uploads/introduction_module_1.pdf', 1),
+(2, 3, 'Advanced Concepts Module 3', '/uploads/advanced_concepts_module_3.pdf', 1),
+(3, 7, 'Beginner Guide Module 7', '/uploads/beginner_guide_module_7.pdf', 0),
+(4, 8, 'Historical Overview Module 8', '/uploads/historical_overview_module_8.pdf', 1),
+(5, 9, 'Practical Applications Module 9', '/uploads/practical_applications_module_9.pdf', 0),
+(6, 12, 'Case Studies for Module 12', '/uploads/case_studies_module_12.pdf', 1),
+(7, 13, 'Module 13 Summary', '/uploads/module_13_summary.pdf', 0),
+(8, 16, 'Detailed Analysis Module 16', '/uploads/detailed_analysis_module_16.pdf', 1),
+(9, 23, 'Module 23 Explained', '/uploads/module_23_explained.pdf', 0),
+(10, 25, 'Final Thoughts Module 25', '/uploads/final_thoughts_module_25.pdf', 1),
+(11, 1, 'Introduction to Module 2', '/uploads/introduction_module_2.pdf', 1),
+(12, 1, 'Introduction to Module 3', '/uploads/introduction_module_3.pdf', 1),
+(13, 1, 'Introduction to Module 4', '/uploads/introduction_module_4.pdf', 1),
+(26, 1, 'test', '/uploads/parts/PW1-slides-partie11.pdf', 0),
+(30, 1, 'test 2', '/uploads/parts/Intro Reseaux Info 1-Partie 2-3.pdf', 1),
+(31, 1, 'test 3', '/uploads/parts/Intro Reseaux Info 1-Partie 3-3.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `professeurs` (
   `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `professeurs`
@@ -184,9 +218,12 @@ CREATE TABLE IF NOT EXISTS `professeurs` (
 INSERT INTO `professeurs` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
 (20, 'dd', 'dd', 'dd', 'test@gmial.com', 'dd', 0),
 (21, 'ff', 'ff', 'ff', 'test2@gmial.com', 'ff', 0),
-(22, 'gg', 'gg', 'gg', 'test2@gmail.com', 'gg', 0),
 (23, 'rr', 'rr', 'rr', 'test3@gmail.com', 'rr', 0),
-(24, 'ff', 'ff', 'ff', 'test6@gmial.com', 'ff', 0);
+(24, 'ff', 'ff', 'ff', 'test6@gmial.com', 'ff', 0),
+(25, 'gg', 'ggg', 'gg', 'testADmin@gg.gg', 'gg', 0),
+(26, 'gg', 'gg', 'gg', 'testadmin2@gg.gg', 'gg', 0),
+(27, 'gg', 'gg', 'gg', 'testadmin3@gg.gg', 'gg', 0),
+(28, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0);
 
 --
 -- Constraints for dumped tables
@@ -204,6 +241,12 @@ ALTER TABLE `enrollement`
 --
 ALTER TABLE `modules`
   ADD CONSTRAINT `prof` FOREIGN KEY (`prof_id`) REFERENCES `professeurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `parties`
+--
+ALTER TABLE `parties`
+  ADD CONSTRAINT `part_cours` FOREIGN KEY (`id_cours`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

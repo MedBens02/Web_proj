@@ -35,7 +35,7 @@ body {
         4fr [content-end content-two-start] 4fr [content-two-end footer-start]
         auto [end footer-end];
     gap: 20px;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     overflow: auto; 
     height: 100vh;
     min-height: 800px;

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     fetchCourses();
-
 });
 
 document.getElementById('cours').addEventListener('change', function() {
@@ -12,8 +11,9 @@ function fetchCourses() {
     fetch('../../controllers/fetchMyCours.php')
         .then(response => response.json())
         .then(data => {
-            select.innerHTML += data.map(course => `<option value="${course.id}">${course.nom}</option>`).join('');
-        });
+            select.innerHTML += data.map(course => `<option name="${course.prof_id}" value="${course.id}">${course.nom}</option>`).join('');
+
+    });
 }
 
 function fetchParts(courseId) {

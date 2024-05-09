@@ -1,19 +1,9 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--main-color);
-    display: grid;
     grid-template-columns: [start sidebar-start] 1fr 
         [sidebar-end content-start] 4fr [end content-end];
     grid-template-rows: [start header-start] 1fr [header-end content-start] 
         2fr [content-end content-two-start] 6fr [content-two-end footer-start]
         auto [end footer-end];
-    gap: 20px;
-    padding: 20px;
-    overflow: auto; 
-    height: 100vh;
-    min-height: 800px;
-    min-width: 1200px;
-
 }
 
 

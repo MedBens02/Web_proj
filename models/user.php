@@ -72,24 +72,38 @@ class User {
     }
 
     public static function requestDelete($prfid) {
-    try {
-        $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET request = 1 WHERE id = :id');
-        $stmt->bindParam(':id', $prfid);
-        $stmt->execute();
-        $stmt = null;
-        return 'ok';
-    } catch (PDOException $e) {
-        error_log('Failed to request deletion: ' . $e->getMessage());
-        return 'error';
+        try {
+            $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET request = 1 WHERE id = :id');
+            $stmt->bindParam(':id', $prfid);
+            $stmt->execute();
+            $stmt = null;
+            return 'ok';
+        } catch (PDOException $e) {
+            error_log('Failed to request deletion: ' . $e->getMessage());
+            return 'error';
+        }
     }
-}
+
+    public static function getUserName($prfid) {
+        try {
+            $stmt = DB::connect()->prepare('SELECT nom, prenom FROM ' . static::$tableName . ' WHERE id = :id');
+            $stmt->bindParam(':id', $prfid);
+            $stmt->execute();
+            $name = $stmt->fetch(PDO::FETCH_OBJ);
+            $stmt = null;
+            return $name;
+        } catch (PDOException $e) {
+            error_log('Failed to request deletion: ' . $e->getMessage());
+            return 'error';
+        }
+    }
 }
 
 class Etudiant extends User {
     protected static $tableName = 'etudiant';
 
     static public function getMyCourses($stdid) {
-        $stmt = DB::connect()->prepare('SELECT m.id, m.nom, m.description FROM modules m
+        $stmt = DB::connect()->prepare('SELECT m.id, m.nom, m.description, m.prof_id FROM modules m
             JOIN enrollement e ON m.id = e.id_cours
             WHERE e.id_etd = ?');
         $stmt->execute([$stdid]);

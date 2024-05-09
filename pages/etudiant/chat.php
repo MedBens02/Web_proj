@@ -18,6 +18,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
     <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardEtudiant.css">
     <link rel="stylesheet" href="mesCours.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
 <body>
     <div class="dash-title">
@@ -49,17 +50,54 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
                 <select id="cours" name="cours" class="form-input">
                 </select>
             </div>
+            <div class="form-group">
+                <label for="prof">Prof:</label>
+                <output id="profName">...</output>
+            </div>
         </div>
     </div>
             
     <div class="tables-two-cont">
         <div class="contn">
-        <h2>Liste des parties</h2>
-        <div id="parts" class="table-wrapper"></div>
+            <h2 id="chatWith">Chat</h2>
+                <div class="chat-box">
+                    <div class="msg-block">
+                        <div class="received-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TESTgggggggggggggggggggggggggggggggggggggggggggggggg</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="received-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                    <div class="msg-block">
+                        <div class="sent-msg">TEST</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="msg">msg:</label>
+                    <input id="msg" name="msg" class="form-input"></input>
+                    <button class="buttonAdd">Envoyer</button>
+                </div>
         </div>
     </div>
 
-    <script src="../../scripts/mesCours.js" type="module"></script>
+    <script src="../../scripts/chat.js" type="module"></script>
 </body>
 
 <footer class="footer">

@@ -34,11 +34,12 @@ function fetchAllStudents() {
 
 
 function fetchCourses() {
+    const select = document.getElementById('cours');
+    select.innerHTML += `<option value="" disabled selected>Cours</option>`;
     fetch('../../controllers/fetchAllCourses.php')
         .then(response => response.json())
         .then(data => {
-            const select = document.getElementById('cours');
-            select.innerHTML = data.map(course => `<option value="${course.id}">${course.nom}</option>`).join('');
+            select.innerHTML += data.map(course => `<option value="${course.id}">${course.nom}</option>`).join('');
         });
 }
 const errorMsg = document.getElementById('failed');
@@ -121,7 +122,7 @@ function removeEnrollment(courseId, studentId) {
     .then(result => {
         if (result.success) {
             fetchStudents(courseId); // Refresh the list to reflect changes
-            successMsg.textContent = "Etudiant enlove avec succees";
+            successMsg.textContent = "Etudiant enleve avec succees";
             successMsg.hidden = false;
         } else {
             errorMsg.textContent = "Erreur lors la supression de l'etudiant";

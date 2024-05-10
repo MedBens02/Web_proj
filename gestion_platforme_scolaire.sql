@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 09, 2024 at 05:00 PM
+-- Generation Time: May 10, 2024 at 07:41 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -81,6 +81,38 @@ INSERT INTO `enrollement` (`id`, `id_cours`, `id_etd`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `etd_to_prof`
+--
+
+DROP TABLE IF EXISTS `etd_to_prof`;
+CREATE TABLE IF NOT EXISTS `etd_to_prof` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `sender_id` int NOT NULL,
+  `recipient_id` int NOT NULL,
+  `time_stamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  PRIMARY KEY (`id`),
+  KEY `etd_send` (`sender_id`),
+  KEY `prof_receive` (`recipient_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `etd_to_prof`
+--
+
+INSERT INTO `etd_to_prof` (`id`, `sender_id`, `recipient_id`, `time_stamp`, `msg`) VALUES
+(1, 51, 20, '2024-05-10 07:35:06', 'I have a question about the assignment.'),
+(2, 44, 21, '2024-05-10 07:35:06', 'Thank you for approving the proposal. I have further questions.'),
+(3, 41, 23, '2024-05-10 07:35:06', 'Where can I find the lecture notes?'),
+(4, 43, 24, '2024-05-10 07:35:06', 'What topics will the test cover?'),
+(5, 40, 25, '2024-05-10 07:35:06', 'I will be absent during the new office hours, can we reschedule?'),
+(6, 46, 26, '2024-05-10 07:35:06', 'Yes, what time would be suitable for the meeting?'),
+(7, 39, 27, '2024-05-10 07:35:06', 'I didn’t receive the exam schedule. Can you resend it?'),
+(8, 45, 28, '2024-05-10 07:35:06', 'Thank you! I appreciate your feedback.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `etudiant`
 --
 
@@ -102,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
-(37, 'gg', 'ff', 'ff', 'test@gmail.com', 'ff', 1),
+(37, 'gg', 'ff', 'ff', 'test@gmail.com', 'ff', 0),
 (38, 'hh', 'ff', 'ff', 'test3@gmail.com', 'ff', 0),
 (39, 'Espinoza', 'Leslie', '207 Erin Well, West Andreamouth, TN 60441', 'leslie.espinoza@example.com', 'MlH%^U)yH3O', 0),
 (40, 'Wood', 'Julie', '601 Sandra Knolls, Freemanfort, HI 57222', 'julie.wood@example.com', '@k0ytSS$mMSpo', 0),
@@ -150,7 +182,7 @@ INSERT INTO `modules` (`id`, `nom`, `description`, `prof_id`) VALUES
 (9, 'Français', 'Cours de français', 20),
 (12, 'Java', 'Programmation Java', 23),
 (13, 'controle de gestion', 'Cours de marketing', 20),
-(16, 'rr', 'rr', 20),
+(16, 'rr', 'rr', 21),
 (23, 'test', 'test', 21),
 (25, 'tt', 'tt', 20);
 
@@ -169,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `parties` (
   `view_flag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_part`),
   KEY `part_cours` (`id_cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `parties`
@@ -190,8 +222,7 @@ INSERT INTO `parties` (`id_part`, `id_cours`, `title_part`, `path_part`, `view_f
 (12, 1, 'Introduction to Module 3', '/uploads/introduction_module_3.pdf', 1),
 (13, 1, 'Introduction to Module 4', '/uploads/introduction_module_4.pdf', 1),
 (26, 1, 'test', '/uploads/parts/PW1-slides-partie11.pdf', 0),
-(30, 1, 'test 2', '/uploads/parts/Intro Reseaux Info 1-Partie 2-3.pdf', 1),
-(31, 1, 'test 3', '/uploads/parts/Intro Reseaux Info 1-Partie 3-3.pdf', 1);
+(31, 1, 'test 3', '/uploads/parts/Intro Reseaux Info 1-Partie 3-3.pdf', 0);
 
 -- --------------------------------------------------------
 
@@ -216,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `professeurs` (
 --
 
 INSERT INTO `professeurs` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
-(20, 'dd', 'dd', 'dd', 'test@gmial.com', 'dd', 0),
+(20, 'med', 'bens', 'dd', 'test@gmial.com', 'dd', 0),
 (21, 'ff', 'ff', 'ff', 'test2@gmial.com', 'ff', 0),
 (23, 'rr', 'rr', 'rr', 'test3@gmail.com', 'rr', 0),
 (24, 'ff', 'ff', 'ff', 'test6@gmial.com', 'ff', 0),
@@ -224,6 +255,38 @@ INSERT INTO `professeurs` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_pa
 (26, 'gg', 'gg', 'gg', 'testadmin2@gg.gg', 'gg', 0),
 (27, 'gg', 'gg', 'gg', 'testadmin3@gg.gg', 'gg', 0),
 (28, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prof_to_etd`
+--
+
+DROP TABLE IF EXISTS `prof_to_etd`;
+CREATE TABLE IF NOT EXISTS `prof_to_etd` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `sender_id` int NOT NULL,
+  `recipient_id` int NOT NULL,
+  `time_stamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  PRIMARY KEY (`id`),
+  KEY `prof_send` (`sender_id`),
+  KEY `etd_receive` (`recipient_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `prof_to_etd`
+--
+
+INSERT INTO `prof_to_etd` (`id`, `sender_id`, `recipient_id`, `time_stamp`, `msg`) VALUES
+(1, 20, 37, '2024-05-10 07:35:06', 'Please review the latest assignment.'),
+(2, 20, 37, '2024-05-10 07:35:06', 'Your project proposal has been approved.'),
+(3, 23, 41, '2024-05-10 07:35:06', 'I have uploaded the new lecture notes.'),
+(4, 24, 43, '2024-05-10 07:35:06', 'Remember to prepare for the upcoming test.'),
+(5, 25, 40, '2024-05-10 07:35:06', 'Office hours will be changed next week.'),
+(6, 26, 46, '2024-05-10 07:35:06', 'Can you meet me tomorrow to discuss your thesis?'),
+(7, 27, 39, '2024-05-10 07:35:06', 'Please check your email for the exam schedule.'),
+(8, 28, 45, '2024-05-10 07:35:06', 'Good job on your recent presentation.');
 
 --
 -- Constraints for dumped tables
@@ -237,6 +300,13 @@ ALTER TABLE `enrollement`
   ADD CONSTRAINT `id_etd` FOREIGN KEY (`id_etd`) REFERENCES `etudiant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `etd_to_prof`
+--
+ALTER TABLE `etd_to_prof`
+  ADD CONSTRAINT `etd_send` FOREIGN KEY (`sender_id`) REFERENCES `etudiant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prof_receive` FOREIGN KEY (`recipient_id`) REFERENCES `professeurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `modules`
 --
 ALTER TABLE `modules`
@@ -247,6 +317,13 @@ ALTER TABLE `modules`
 --
 ALTER TABLE `parties`
   ADD CONSTRAINT `part_cours` FOREIGN KEY (`id_cours`) REFERENCES `modules` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `prof_to_etd`
+--
+ALTER TABLE `prof_to_etd`
+  ADD CONSTRAINT `etd_receive` FOREIGN KEY (`recipient_id`) REFERENCES `etudiant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prof_send` FOREIGN KEY (`sender_id`) REFERENCES `professeurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

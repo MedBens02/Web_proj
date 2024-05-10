@@ -137,16 +137,16 @@ class Prof extends User {
     }
 
     public static function getStudentsWithEnrollmentStatus($courseId) {
-    $db = DB::connect();
-    $sql = "SELECT etudiant.*, 
-            CASE WHEN enrollement.id_cours IS NULL THEN 0 ELSE 1 END AS is_enrolled
-            FROM etudiant
-            LEFT JOIN enrollement ON etudiant.id = enrollement.id_etd AND enrollement.id_cours = :courseId";
+        $db = DB::connect();
+        $sql = "SELECT etudiant.*, 
+                CASE WHEN enrollement.id_cours IS NULL THEN 0 ELSE 1 END AS is_enrolled
+                FROM etudiant
+                LEFT JOIN enrollement ON etudiant.id = enrollement.id_etd AND enrollement.id_cours = :courseId";
 
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
     public static function removeStudentFromCourse($courseId, $studentId) {

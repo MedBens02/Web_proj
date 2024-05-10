@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../database/DB.php");
-require_once("../models/user.php");
+require_once("../models/chat.php");
 
 // Check if the user is logged in and is a prof
 if (!isset($_SESSION['logged']) || ($_SESSION['role'] !== 'prof' && $_SESSION['role'] !== 'etudiant')) {

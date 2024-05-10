@@ -1,9 +1,19 @@
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--main-color);
+    display: grid;
     grid-template-columns: [start sidebar-start] 1fr 
         [sidebar-end content-start] 4fr [end content-end];
     grid-template-rows: [start header-start] 1fr [header-end content-start] 
-        2fr [content-end content-two-start] 6fr [content-two-end footer-start]
-        auto [end footer-end];
+        2fr [content-end content-mid-start] 2fr [content-mid-end content-two-start]
+        5fr [content-two-end footer-start] auto [end footer-end];
+    gap: 20px;
+    padding: 20px;
+    overflow: auto; 
+    height: 100vh;
+    min-height: 800px;
+    min-width: 1200px;
+
 }
 
 
@@ -30,7 +40,8 @@ body {
 }
 
 .table-wrapper {
-    max-height: 350px; 
+    max-height: 150px; 
+
     overflow-y: auto;
 }
 
@@ -70,6 +81,12 @@ body {
     display: block; /* Make the error message a block-level element */
     margin-top: 5px; /* Add some space between the input field and the error message */
 }
+
+
+
+
+
+
 
 .error-alert {
     background-color: #ffcccc;
@@ -119,9 +136,7 @@ body {
 }
 
 .part-item h4 {
-    color: var(--fourth-color);
-    display: inline-block;
-    width: 50%;
+    color: var(--second-color);
 }
 
 .part-item button {

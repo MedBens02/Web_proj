@@ -14,12 +14,6 @@ $secondParty = isset($_GET['secondParty']) ? intval($_GET['secondParty']) : 0;
 
 $userType = $_SESSION['role'];
 
-if ($userType == 'prof')
-	$firstParty = $_SESSION['id_etd'];
-else if ($userType == 'etudiant')
-	$firstParty = $_SESSION['id_prf'];
-
-
 
 try {
 	$chat = Chat::getMsgs($secondParty, $firstParty);

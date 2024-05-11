@@ -12,6 +12,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
@@ -20,6 +21,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
     <link rel="stylesheet" href="mesCours.css">
     <link rel="stylesheet" href="chat.css">
 </head>
+
 <body>
     <div class="dash-title">
         <h1>Gerer vos etudiants</h1>
@@ -37,7 +39,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
-    
+
     <div class="tables-cont">
         <div class="contn">
             <h2>Liste des cours</h2>
@@ -56,44 +58,18 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
             </div>
         </div>
     </div>
-            
+
     <div class="tables-two-cont">
         <div class="contn">
             <h2 id="chatWith">Chat</h2>
-                <div class="chat-box">
-                    <div class="msg-block">
-                        <div class="received-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TESTgggggggggggggggggggggggggggggggggggggggggggggggg</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="received-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                    <div class="msg-block">
-                        <div class="sent-msg">TEST</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="msg">msg:</label>
-                    <input id="msg" name="msg" class="form-input"></input>
-                    <button class="buttonAdd">Envoyer</button>
-                </div>
+            <div class="chat-box">
+
+            </div>
+            <div class="form-group">
+                <label for="msg">msg:</label>
+                <input id="msg" name="message" class="form-input"></input>
+                <button class="buttonAdd">Envoyer</button>
+            </div>
         </div>
     </div>
 
@@ -103,6 +79,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
 <footer class="footer">
     Copyright © 2024 ENSA Tetouan.
 </footer>
+
 </html>
 
 

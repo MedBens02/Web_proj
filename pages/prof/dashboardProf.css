@@ -122,7 +122,7 @@ h1, h2 {
 
 .side-nav h4 {
     padding-top: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
     opacity: 60%;
     color: var(--third-color)
 }
@@ -229,9 +229,9 @@ th {
 .side-nav a {
     border-radius: 8px;
     padding: 6px 8px 6px 8px;
-    margin-top: 15px;
+    margin-top: 13px;
     text-decoration: none;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--fourth-color);
     display: block;

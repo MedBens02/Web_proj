@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../models/cours.php');
+require_once "../models/cours.php";
 
 if (!isset($_SESSION['logged']) || ($_SESSION['role'] !== 'prof' && $_SESSION['role'] !== 'etudiant')) {
     http_response_code(403);

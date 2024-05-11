@@ -3,7 +3,7 @@
 
 session_start();
 
-if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
+if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
     // Redirect them to login page or show an error
     header('Location: ../login.php');
     exit;
@@ -15,13 +15,13 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <title>Prof Dashboard</title>
-    <link rel="stylesheet" href="dashboardProf.css">
-    <link rel="stylesheet" href="manageModule.css">
+    <title>S'inscrire a un cours</title>
+    <link rel="stylesheet" href="dashboardEtudiant.css">
+    <link rel="stylesheet" href="mesCours.css">
 </head>
 <body>
     <div class="dash-title">
-        <h1>Gerer vos etudiants</h1>
+        <h1>S'inscrire a un cours</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -30,12 +30,10 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <h3><?php echo $_SESSION['email']; ?></h3>
         <h4><?php echo $_SESSION['role']; ?></h4>
-        <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
-        <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
-        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
-        <a href="manageModule.php" id="manageModule-link">Manage Module</a>
+        <a href="dashboardEtudiant.php" id="dashboard-link">Dashboard</a>
+        <a href="inscrire.php" id="inscrire-link">S'inscrire</a>
+        <a href="mesCours.php" id="mesCours-link">Mes Cours</a>
         <a href="chat.php" id="chat-link">Chat</a>
-
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
@@ -54,23 +52,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
             </div>
         </div>
     </div>
-
-    <div class="tables-mid-cont">
-    <div class="contn">
-        <h2>Ajouter une partie</h2>
-        <form id="addPartForm" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="partTitle">Titre de partie:</label>
-                <input type="text" id="partTitle" class="form-input" name="partTitle" required>
-            </div>
-            <div class="form-group">
-                <label for="partFile">Fichier PDF:</label>
-                <input type="file" id="partFile" class="form-input" name="partFile" accept=".pdf" required>
-            </div>
-            <button type="submit" class="buttonAdd">Ajouter Partie</button>
-        </form>
-    </div>
-</div>
             
     <div class="tables-two-cont">
         <div class="contn">
@@ -79,7 +60,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         </div>
     </div>
 
-    <script src="../../scripts/manageModule.js" type="module"></script>
+    <script src="../../scripts/mesCours.js" type="module"></script>
 </body>
 
 <footer class="footer">

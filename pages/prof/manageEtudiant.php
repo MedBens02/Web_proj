@@ -34,6 +34,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
         <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
         <a href="manageModule.php" id="manageModule-link">Manage Module</a>
+        <a href="chat.php" id="chat-link">Chat</a>
+
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>

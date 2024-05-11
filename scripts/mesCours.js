@@ -26,7 +26,7 @@ function fetchParts(courseId) {
             let filename = part.path_part.split('/').pop();
             html += `<div class="part-item">
                         <h4>${part.title_part}</h4>
-                        <a href="/proj${part.path_part}" target="_blank">
+                        <a href="/${part.path_part}" target="_blank">
                             <button class="buttonAdd">${filename}</h4></button>
                         </a>
                     </div>`;

@@ -1,7 +1,9 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/proj/database/DB.php');
+// include_once($_SERVER['DOCUMENT_ROOT'] . '/proj/database/DB.php');
+require_once "../database/DB.php";
 
-class User {
+class User
+{
 
     protected $nom;
     protected $prenom;
@@ -9,7 +11,8 @@ class User {
     protected $adresse;
     protected $mot_de_passe;
 
-	public static function loginUser($email) {
+    public static function loginUser($email)
+    {
         $stmt = DB::connect()->prepare('SELECT * FROM ' . static::$tableName . ' WHERE email = ?');
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_OBJ);
@@ -18,7 +21,8 @@ class User {
         $stmt = null; // Closing connection
     }
 
-    public static function checkEmailExists($email) {
+    public static function checkEmailExists($email)
+    {
         $stmt = DB::connect()->prepare('SELECT COUNT(*) FROM ' . static::$tableName . ' WHERE email = ?');
         $stmt->execute([$email]);
         $count = $stmt->fetchColumn();
@@ -26,14 +30,15 @@ class User {
         return $count > 0;
     }
 
-	public static function addUser($data) {
+    public static function addUser($data)
+    {
         $stmt = DB::connect()->prepare('INSERT INTO ' . static::$tableName . ' (nom, prenom, adresse, email, mot_de_passe, request) VALUES (:nom, :prenom, :adresse, :email, :mot_de_passe, 0)');
         $stmt->bindParam(':nom', $data['nom']);
         $stmt->bindParam(':prenom', $data['prenom']);
         $stmt->bindParam(':adresse', $data['adresse']);
         $stmt->bindParam(':email', $data['email']);
         $stmt->bindParam(':mot_de_passe', $data['mot_de_passe']);
-        
+
         if ($stmt->execute()) {
             return 'ok';
         } else {
@@ -43,7 +48,8 @@ class User {
         $stmt = null;
     }
 
-    public static function changePassword($prfid, $newPass) {
+    public static function changePassword($prfid, $newPass)
+    {
         try {
             $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET mot_de_passe = :password WHERE id = :id');
             $stmt->bindParam(':password', $newPass);
@@ -55,10 +61,11 @@ class User {
         }
     }
 
-    public static function modifyUser($prfid, $data) {
+    public static function modifyUser($prfid, $data)
+    {
         try {
             $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET nom = :nom, prenom = :prenom, adresse = :adresse, email = :email WHERE id = :id');
-            
+
             $stmt->bindParam(':nom', $data['nom']);
             $stmt->bindParam(':prenom', $data['prenom']);
             $stmt->bindParam(':adresse', $data['adresse']);
@@ -71,7 +78,8 @@ class User {
         }
     }
 
-    public static function requestDelete($prfid) {
+    public static function requestDelete($prfid)
+    {
         try {
             $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET request = 1 WHERE id = :id');
             $stmt->bindParam(':id', $prfid);
@@ -84,7 +92,8 @@ class User {
         }
     }
 
-    public static function getUserName($prfid) {
+    public static function getUserName($prfid)
+    {
         try {
             $stmt = DB::connect()->prepare('SELECT nom, prenom FROM ' . static::$tableName . ' WHERE id = :id');
             $stmt->bindParam(':id', $prfid);
@@ -99,10 +108,12 @@ class User {
     }
 }
 
-class Etudiant extends User {
+class Etudiant extends User
+{
     protected static $tableName = 'etudiant';
 
-    static public function getMyCourses($stdid) {
+    static public function getMyCourses($stdid)
+    {
         $stmt = DB::connect()->prepare('SELECT m.id, m.nom, m.description, m.prof_id FROM modules m
             JOIN enrollement e ON m.id = e.id_cours
             WHERE e.id_etd = ?');
@@ -113,22 +124,26 @@ class Etudiant extends User {
     // Additional methods specific to Etudiant can be added here
 }
 
-class Prof extends User {
+class Prof extends User
+{
     protected static $tableName = 'professeurs';
 
-    public static function getAllEtudiants() {
+    public static function getAllEtudiants()
+    {
         $stmt = DB::connect()->prepare('SELECT * FROM etudiant');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);  // Fetch all students as objects
     }
 
-    public static function getCourses($profId) {
+    public static function getCourses($profId)
+    {
         $stmt = DB::connect()->prepare('SELECT id, name FROM courses WHERE prof_id = ?');
         $stmt->execute([$profId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function enrollStudents($courseId, $studentIds) {
+    public static function enrollStudents($courseId, $studentIds)
+    {
         $stmt = DB::connect()->prepare('INSERT INTO enrollement (id_cours, id_etd) VALUES (?, ?)');
         foreach ($studentIds as $id) {
             $stmt->execute([$courseId, $id]);
@@ -136,7 +151,8 @@ class Prof extends User {
         return true;
     }
 
-    public static function getStudentsWithEnrollmentStatus($courseId) {
+    public static function getStudentsWithEnrollmentStatus($courseId)
+    {
         $db = DB::connect();
         $sql = "SELECT etudiant.*, 
                 CASE WHEN enrollement.id_cours IS NULL THEN 0 ELSE 1 END AS is_enrolled
@@ -147,14 +163,15 @@ class Prof extends User {
         $stmt->bindParam(':courseId', $courseId, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    }
 
-    public static function removeStudentFromCourse($courseId, $studentId) {
-    $stmt = DB::connect()->prepare('DELETE FROM enrollement WHERE id_cours = :courseId AND id_etd = :studentId');
-    $stmt->bindParam(':courseId', $courseId);
-    $stmt->bindParam(':studentId', $studentId);
-    return $stmt->execute();
-}
+    public static function removeStudentFromCourse($courseId, $studentId)
+    {
+        $stmt = DB::connect()->prepare('DELETE FROM enrollement WHERE id_cours = :courseId AND id_etd = :studentId');
+        $stmt->bindParam(':courseId', $courseId);
+        $stmt->bindParam(':studentId', $studentId);
+        return $stmt->execute();
+    }
 
 
     // Additional methods specific to Prof can be added here

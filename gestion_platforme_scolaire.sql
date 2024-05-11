@@ -30,12 +30,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `prenom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `login` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255)  NOT NULL,
+  `prenom` varchar(255)  NOT NULL,
+  `login` varchar(255)  NOT NULL,
+  `mot_de_passe` varchar(255)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `admin`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `enrollement` (
   PRIMARY KEY (`id`),
   KEY `id_etd` (`id_etd`),
   KEY `id_cours` (`id_cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `enrollement`
@@ -90,11 +90,11 @@ CREATE TABLE IF NOT EXISTS `etd_to_prof` (
   `sender_id` int NOT NULL,
   `recipient_id` int NOT NULL,
   `time_stamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `msg` text CHARACTER SET utf8mb4 ,
   PRIMARY KEY (`id`),
   KEY `etd_send` (`sender_id`),
   KEY `prof_receive` (`recipient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `etd_to_prof`
@@ -119,15 +119,15 @@ INSERT INTO `etd_to_prof` (`id`, `sender_id`, `recipient_id`, `time_stamp`, `msg
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `prenom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `adresse` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `mot_de_passe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255)  NOT NULL,
+  `prenom` varchar(255)  NOT NULL,
+  `adresse` varchar(255)  NOT NULL,
+  `email` varchar(255)  NOT NULL,
+  `mot_de_passe` varchar(255)  NOT NULL,
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `etudiant`
@@ -163,12 +163,12 @@ INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe
 DROP TABLE IF EXISTS `modules`;
 CREATE TABLE IF NOT EXISTS `modules` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255)  NOT NULL,
+  `description` varchar(255)  NOT NULL,
   `prof_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `prof` (`prof_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `modules`
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `parties` (
   `view_flag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_part`),
   KEY `part_cours` (`id_cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `parties`
@@ -233,14 +233,14 @@ INSERT INTO `parties` (`id_part`, `id_cours`, `title_part`, `path_part`, `view_f
 DROP TABLE IF EXISTS `professeurs`;
 CREATE TABLE IF NOT EXISTS `professeurs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `adresse` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
+  `adresse` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `professeurs`
@@ -268,11 +268,11 @@ CREATE TABLE IF NOT EXISTS `prof_to_etd` (
   `sender_id` int NOT NULL,
   `recipient_id` int NOT NULL,
   `time_stamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `msg` text CHARACTER SET utf8mb4 ,
   PRIMARY KEY (`id`),
   KEY `prof_send` (`sender_id`),
   KEY `etd_receive` (`recipient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `prof_to_etd`

@@ -12,12 +12,14 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardProf.css">
 </head>
+
 <body>
     <div class="dash-title">
         <h1>Prof Dashboard</h1>
@@ -33,33 +35,36 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
         <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
         <a href="manageModule.php" id="manageModule-link">Manage Module</a>
+        <a href="chat.php" id="chat-link">Chat</a>
+
         <a href="profile.php" id="profile-link">Profile</a>
         <a href="../logout.php">Logout</a>
     </div>
-    
+
     <div class="tables-cont">
         <div class="contn">
-        <h2>List des Étudiants</h2>
-        <div id="students" class="table-wrapper"></div>
+            <h2>List des Étudiants</h2>
+            <div id="students" class="table-wrapper"></div>
         </div>
     </div>
-            
+
     <div class="tables-two-cont">
         <div class="contn">
-        <h2>List des cours</h2>
-        <button class="buttonAdd" onclick="window.location.href='manageCours.php';">Ajouter Cours</button>
-        <div id="cours" class="table-wrapper course-table"></div>
+            <h2>List des cours</h2>
+            <button class="buttonAdd" onclick="window.location.href='manageCours.php';">Ajouter Cours</button>
+            <div id="cours" class="table-wrapper course-table"></div>
         </div>
     </div>
-    
-    
-    
+
+
+
     <script src="../../scripts/dashboardProf.js"></script>
 </body>
 
 <footer class="footer">
     Copyright © 2024 ENSA Tetouan.
 </footer>
+
 </html>
 
 

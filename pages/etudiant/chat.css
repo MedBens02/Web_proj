@@ -27,6 +27,18 @@
 	overflow-wrap: break-word;
 }
 
+.time_stamp{
+	font-size: 10px;
+	text-align: right;
+}
+.broadcast {
+  border: 1px solid var(--fourth-color);
+  border-radius: 4px;
+  background-color: var(--main-color);
+  padding: 10px;
+}
+
+
 .received-msg {
 	border: 1px solid var(--fourth-color);
     border-radius: 4px;

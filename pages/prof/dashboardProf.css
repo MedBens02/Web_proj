@@ -251,3 +251,8 @@ th {
     background-color: var(--main-color);
     color: var(--second-color)
 }
+
+.side-nav img:hover {
+    opacity: 60%;
+    cursor: pointer;
+}

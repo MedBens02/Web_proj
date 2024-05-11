@@ -15,13 +15,13 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <title>Prof Dashboard</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="dashboardEtudiant.css">
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <div class="dash-title">
-        <h1>Etudiant Dashboard</h1>
+        <h1>Modifier votre profile</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -34,7 +34,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         <a href="mesCours.php" id="mesCours-link">Mes Cours</a>
         <a href="chat.php" id="chat-link">Chat</a>
         <a href="profile.php" id="profile-link">Profile</a>
-        <a href="../logout.php">Logout</a>
+        <a href="../logout.php">Se deconnecter</a>
     </div>
 
 

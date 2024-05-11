@@ -4,7 +4,7 @@ require_once("../database/DB.php");
 require_once("../models/cours.php");
 
 // Check if the user is logged in and is a prof
-if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
+if (!isset($_SESSION['logged']) || ($_SESSION['role'] !== 'etudiant' && $_SESSION['role'] !== 'admin')) {
     http_response_code(403);
     echo json_encode(['error' => 'Unauthorized access']);
     exit;

@@ -21,7 +21,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 </head>
 <body>
     <div class="dash-title">
-        <h1>Ajouter users</h1>
+        <h1>Ajouter Utilisateurs</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
     </div>
     <!-- Side Navigation Menu -->
@@ -30,9 +30,10 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardAdmin.php" id="dashboard-link">Dashboard</a>
-        <a href="manageUsers.php" id="manage-users-link">Manage Users  <span id="notif" hidden>!</span></a>
-        <a href="addUsers.php" id="addUsers-link">Ajouter Users</a>
-        <a href="../logout.php">Logout</a>
+        <a href="manageUsers.php" id="manage-users-link">Gerer les utilisateurs<span id="notif" hidden>!</span></a>
+        <a href="manageCours.php" id="manage-cours-link">Gerer les cours</a>
+        <a href="addUsers.php" id="addUsers-link">Ajouter utilisateurs</a>
+        <a href="../logout.php">Se deconnecter</a>
     </div>
 
 

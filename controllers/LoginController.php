@@ -12,7 +12,7 @@ $role = isset($_POST['userType']) ? $_POST['userType'] : NULL;
 switch ($role) {
     case 'admin':
         $admin = Admin::loginAdmin($login);
-        if ($admin && $mdp == $admin->mot_de_passe) {
+        if ($admin && password_verify($mdp, $admin->mot_de_passe)) {
             $_SESSION['logged'] = true;
             $_SESSION['role'] = 'admin';
             $_SESSION['nom'] = $admin->nom;
@@ -26,7 +26,7 @@ switch ($role) {
 
     case 'etudiant':
         $etd = Etudiant::loginUser($login);
-        if($etd && $mdp == $etd->mot_de_passe) {
+        if($etd && password_verify($mdp, $etd->mot_de_passe)) {
             $_SESSION['logged'] = true;
             $_SESSION['role'] = 'etudiant';
             $_SESSION['id_etd'] = $etd->id;
@@ -44,7 +44,7 @@ switch ($role) {
 
     case 'prof':
         $prf = Prof::loginUser($login);
-        if($prf && $mdp == $prf->mot_de_passe) {
+        if($prf && password_verify($mdp, $prf->mot_de_passe)) {
             $_SESSION['logged'] = true;
             $_SESSION['role'] = 'prof';
             $_SESSION['id_prf'] = $prf->id;

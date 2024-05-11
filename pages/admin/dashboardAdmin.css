@@ -134,7 +134,7 @@ h1, h2 {
 }
 
 .table-wrapper {
-    max-height: 22vh;
+    max-height: 25vh;
     margin-top: 10px;
     overflow-y: auto;
 }

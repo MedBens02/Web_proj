@@ -51,15 +51,14 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
             <div id="success" class="success-alert" hidden></div>
 
             <div class="form-group">
-                <label for="cours">Students:</label>
-                <select id="students" name="student" class="form-input"></select>
-            </div>
-
-            <div class="form-group">
                 <label for="cours">Cours:</label>
                 <select id="cours" name="Cour" class="form-input"></select>
             </div>
 
+            <div class="form-group">
+                <label for="cours">Etudiants:</label>
+                <select id="students" name="student" class="form-input"></select>
+            </div>
 
         </div>
     </div>
@@ -246,7 +245,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         var opt = document.createElement("option");
         opt.disabled = true;
         opt.selected = true;
-        opt.innerText = "Students";
+        opt.innerText = "Etudiants";
 
         select.appendChild(opt)
 

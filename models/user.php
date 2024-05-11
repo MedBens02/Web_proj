@@ -1,5 +1,4 @@
 <?php
-// include_once($_SERVER['DOCUMENT_ROOT'] . '/proj/database/DB.php');
 require_once "../database/DB.php";
 
 class User
@@ -16,9 +15,8 @@ class User
         $stmt = DB::connect()->prepare('SELECT * FROM ' . static::$tableName . ' WHERE email = ?');
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_OBJ);
+        $stmt = null;
         return $user;
-        $stmt->close();
-        $stmt = null; // Closing connection
     }
 
     public static function checkEmailExists($email)
@@ -32,27 +30,30 @@ class User
 
     public static function addUser($data)
     {
+        $hashedPassword = password_hash($data['mot_de_passe'], PASSWORD_DEFAULT);
+
         $stmt = DB::connect()->prepare('INSERT INTO ' . static::$tableName . ' (nom, prenom, adresse, email, mot_de_passe, request) VALUES (:nom, :prenom, :adresse, :email, :mot_de_passe, 0)');
         $stmt->bindParam(':nom', $data['nom']);
         $stmt->bindParam(':prenom', $data['prenom']);
         $stmt->bindParam(':adresse', $data['adresse']);
         $stmt->bindParam(':email', $data['email']);
-        $stmt->bindParam(':mot_de_passe', $data['mot_de_passe']);
+        $stmt->bindParam(':mot_de_passe', $hashedPassword);
 
         if ($stmt->execute()) {
             return 'ok';
         } else {
             return 'error';
         }
-        $stmt->close();
         $stmt = null;
     }
 
     public static function changePassword($prfid, $newPass)
     {
         try {
+            $hashedNewPass = password_hash($newPass, PASSWORD_DEFAULT);
+
             $stmt = DB::connect()->prepare('UPDATE ' . static::$tableName . ' SET mot_de_passe = :password WHERE id = :id');
-            $stmt->bindParam(':password', $newPass);
+            $stmt->bindParam(':password', $hashedNewPass);
             $stmt->bindParam(':id', $prfid);
             $stmt->execute();
             return true;

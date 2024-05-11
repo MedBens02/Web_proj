@@ -33,7 +33,7 @@ function fetchProfs() {
                         <td>${prof.prenom}</td>
                         <td>${prof.email}</td>
                         <td>${prof.adresse}</td>
-                        <td><button class='delete-btn' onclick='confirmDeleteProf(${prof.id})'>Delete</button></td>
+                        <td><button class='delete-btn' onclick='confirmDeleteProf(${prof.id})'>Supprimer</button></td>
                         </tr>`;
         });
         html += `</table>`;
@@ -78,7 +78,7 @@ function fetchStudents() {
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
                         <td>${student.adresse}</td>
-                        <td><button class='delete-btn' onclick='confirmDeleteStudent(${student.id})'>Delete</button></td>
+                        <td><button class='delete-btn' onclick='confirmDeleteStudent(${student.id})'>Supprimer</button></td>
                         </tr>`;
         });
         html += `</table>`;

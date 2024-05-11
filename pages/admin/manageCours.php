@@ -14,15 +14,15 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <title>Gerer les utilisateurs</title>
+    <title>Gerer cours</title>
     <link rel="stylesheet" href="dashboardAdmin.css">
+    <link rel="stylesheet" href="manageCours.css">
 </head>
 <body>
     <div class="dash-title">
-        <h1>Gerer les utilisateurs</h1>
-        <div id="failed" class="error-alert" hidden></div>
+        <h1>Gerer les cours</h1>
         <button class="disconnectBtn" onclick="location.href='../logout.php'">Se deconnecter</button>
-        
+        <div id="failed" class="error-alert" hidden></div>
 
     </div>
     <!-- Side Navigation Menu -->
@@ -39,25 +39,13 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
     
     <div class="tables-cont">
         <div class="contn">
-        <h2>List des Étudiants</h2>
-        <button class="buttonAdd" onclick="window.location.href='addUsers.php';">Ajouter etudiant</button>
-        <div id="students" class="table-wrapper"></div>
+        <h2>Liste des cours</h2>
+        <div id="cours" class="table-wrapper"></div>
         </div>
     </div>
 
-            
-    <div class="tables-two-cont">
-        <div class="contn">
-        <h2>List des Professeurs</h2>
-        <button class="buttonAdd" onclick="window.location.href='addUsers.php';">Ajouter Prof</button>
-        <div id="profs" class="table-wrapper"></div>
-        </div>
-    </div>
-    
-    
-    
-    <script src="../../scripts/dashboardAdmin.js"></script>
 </body>
+<script src="../../scripts/manageCoursAdmin.js"></script>
 
 <footer class="footer">
     Copyright © 2024 ENSA Tetouan.

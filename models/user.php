@@ -9,6 +9,7 @@ class User
     protected $email;
     protected $adresse;
     protected $mot_de_passe;
+    protected $path_profile;
 
     public static function loginUser($email)
     {

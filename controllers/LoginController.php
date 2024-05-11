@@ -36,6 +36,7 @@ switch ($role) {
             $_SESSION['mdp'] = $etd->mot_de_passe;
             $_SESSION['adresse'] = $etd->adresse;
             $_SESSION['nom_complet'] = $etd->nom." ".$etd->prenom;
+            $_SESSION['image'] = $etd->path_profile;
             echo 'okEtudiant';
         } else {
             echo 'error';
@@ -54,6 +55,7 @@ switch ($role) {
             $_SESSION['mdp'] = $prf->mot_de_passe;
             $_SESSION['adresse'] = $prf->adresse;
             $_SESSION['nom_complet'] = $prf->nom." ".$prf->prenom;
+            $_SESSION['image'] = $prf->path_profile;
             echo 'okProf';
         } else {
             echo 'error';

@@ -29,7 +29,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     </div>
     <!-- Side Navigation Menu -->
     <div class="side-nav">
-        <img src="../pfp.png">
+        <img src="../../<?php echo $_SESSION['image']; ?>">
         <h2><?php echo $_SESSION['nom_complet']; ?></h2>
         <h3><?php echo $_SESSION['email']; ?></h3>
         <h4><?php echo $_SESSION['role']; ?></h4>

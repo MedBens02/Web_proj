@@ -62,6 +62,7 @@ h1, h2 {
     width: 100%; /* Ensure the footer takes the full width of its container */
     background-color: var(--second-color); /* Optional: Background color */
     color: var(--main-dark-color); /* Optional: Text color */
+    margin-bottom: 20px;
 }
 
 .dash-title {

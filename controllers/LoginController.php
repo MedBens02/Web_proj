@@ -33,7 +33,7 @@ switch ($role) {
             $_SESSION['email'] = $etd->email;
             $_SESSION['nom'] = $etd->nom;
             $_SESSION['prenom'] = $etd->prenom;
-            $_SESSION['mdp'] = $etd->mot_de_passe;
+            $_SESSION['mdp'] = $mdp;
             $_SESSION['adresse'] = $etd->adresse;
             $_SESSION['nom_complet'] = $etd->nom." ".$etd->prenom;
             $_SESSION['image'] = $etd->path_profile;
@@ -52,7 +52,7 @@ switch ($role) {
             $_SESSION['email'] = $prf->email;
             $_SESSION['nom'] = $prf->nom;
             $_SESSION['prenom'] = $prf->prenom;
-            $_SESSION['mdp'] = $prf->mot_de_passe;
+            $_SESSION['mdp'] = $mdp;
             $_SESSION['adresse'] = $prf->adresse;
             $_SESSION['nom_complet'] = $prf->nom." ".$prf->prenom;
             $_SESSION['image'] = $prf->path_profile;

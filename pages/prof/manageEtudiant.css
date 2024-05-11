@@ -119,3 +119,8 @@ th:nth-child(6), td:nth-child(6) { width: 30%; } /* Address */
     color: var(--fourth-color);
     font-weight: bold;
 }
+
+.notif {
+    color: red;
+    font-weight: bold;
+}

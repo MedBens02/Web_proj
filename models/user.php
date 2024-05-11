@@ -121,6 +121,13 @@ class Etudiant extends User
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    static public function requestEnrollment($studentId, $courseId, $profId) {
+        $db = DB::connect();
+        $sql = "INSERT INTO enrollment_requests (student_id, cours_id, prof_id) VALUES (?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        return $stmt->execute([$studentId, $courseId, $profId]);
+    }
+
     // Additional methods specific to Etudiant can be added here
 }
 

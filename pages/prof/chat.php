@@ -17,8 +17,10 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <meta charset="UTF-8">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
     <title>Prof Dashboard</title>
+    <link rel="stylesheet" href="dashboardProf.css">
+    <link rel="stylesheet" href="manageCours.css">
     <link rel="stylesheet" href="dashboardProfChat.css">
-    <!-- <link rel="stylesheet" href="mesCours.css"> -->
+    
     <link rel="stylesheet" href="./chat.css">
 </head>
 
@@ -35,7 +37,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
-        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
+        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants <span id="notif" hidden>!</span></a>
         <a href="manageModule.php" id="manageModule-link">Manage Module</a>
         <a href="chat.php" id="chat-link">Chat</a>
 
@@ -51,10 +53,15 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
             <div id="success" class="success-alert" hidden></div>
 
             <div class="form-group">
-                <label for="cours">Cours:</label>
-                <select id="students" name="student" class="form-input">
-                </select>
+                <label for="students">Students:</label>
+                <select id="students" name="student" class="form-input"></select>
             </div>
+
+            <div class="form-group">
+                <label for="cours">Cours:</label>
+                <select id="cours" name="Cour" class="form-input"></select>
+            </div>
+
 
         </div>
     </div>
@@ -74,6 +81,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 
         </div>
     </div>
+    <script src="../../scripts/requestCheck.js"></script>
+
 </body>
 
 <footer class="footer">
@@ -83,6 +92,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 </html>
 
 <script type="text/javascript">
+    var moduleID = undefined;
     const PAYLOAD = {
         recipientId: undefined,
         message: undefined
@@ -97,6 +107,11 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     document.querySelector("#students").addEventListener("change", function() {
         const selectedOption = this.options[this.selectedIndex];
         PAYLOAD.recipientId = selectedOption.getAttribute("data-std-id");
+    })
+    document.querySelector("#cours").addEventListener("change", function() {
+        const selectedOption = this.options[this.selectedIndex];
+        moduleID = selectedOption.value
+        // alert(selectedOption.value)
     })
 
     document.querySelector("#msg").addEventListener("change", function() {
@@ -131,12 +146,12 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     })
 
     document.querySelector('#broadcastbtn').addEventListener("click", function() {
-        if (!PAYLOAD.message) {
+        if (!PAYLOAD.message || moduleID == undefined) {
             alert("select a course and input text first");
             return;
         }
         fetch(
-                `../../controllers/AnnoucmentController.php?secondParty=${-1}`, {
+                `../../controllers/AnnoucmentController.php?module=${moduleID}`, {
                     method: "POST",
                     body: JSON.stringify({
                         message: PAYLOAD.message
@@ -150,7 +165,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
                 alert("Oops something went wrong")
             })
             .finally(() => {
-                PAYLOAD.recipientId = PAYLOAD.message = undefined;
                 loadChat()
                 //reload
             });
@@ -158,34 +172,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 
 
     document.addEventListener("DOMContentLoaded", function() {
-
-        const select = document.querySelector("#students");
-        var opt = document.createElement("option");
-        opt.disabled = true;
-        opt.selected = true;
-        opt.innerText = "Students";
-
-        select.appendChild(opt)
-
-
-
-        fetch("../../controllers/fetchStudents.php")
-            .then((response) => response.json())
-            .then((data) => {
-
-                data.forEach(std => {
-                    var stdOpts = document.createElement("option");
-                    stdOpts.innerText = `${std.nom} ${std.prenom}`
-                    stdOpts.setAttribute("data-std-id", std.id);
-                    stdOpts.value = std.id;
-
-                    select.appendChild(stdOpts)
-                });
-
-            });
-
-
-
+        fetchStudents();
+        fetchCourses();
     })
 
     function loadChat(secondParty) {
@@ -234,6 +222,50 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
                 chatbox.appendChild(messageBlock);
             });
         };
+    }
+
+
+    function fetchCourses() {
+        const select = document.getElementById("cours");
+        select.innerHTML += `<option value="" disabled selected>Cours</option>`;
+        fetch("../../controllers/fetchAllcourses.php")
+            .then((response) => response.json())
+            .then((data) => {
+                select.innerHTML += data
+                    .map(
+                        (course) =>
+                        `<option data-prof-id="${course.prof_id}" name="${course.prof_id}" value="${course.id}">${course.nom}</option>`
+                    )
+                    .join("");
+            });
+    }
+
+
+    function fetchStudents() {
+        const select = document.querySelector("#students");
+        var opt = document.createElement("option");
+        opt.disabled = true;
+        opt.selected = true;
+        opt.innerText = "Students";
+
+        select.appendChild(opt)
+
+
+
+        fetch("../../controllers/fetchStudents.php")
+            .then((response) => response.json())
+            .then((data) => {
+
+                data.forEach(std => {
+                    var stdOpts = document.createElement("option");
+                    stdOpts.innerText = `${std.nom} ${std.prenom}`
+                    stdOpts.setAttribute("data-std-id", std.id);
+                    stdOpts.value = std.id;
+
+                    select.appendChild(stdOpts)
+                });
+
+            });
     }
 </script>
 

@@ -133,6 +133,11 @@ h1, h2 {
     width: 70%;
 }
 
+.side-nav a span {
+    font-weight: 800;
+    color: red;
+}
+
 .table-wrapper {
     max-height: 25vh;
     margin-top: 10px;

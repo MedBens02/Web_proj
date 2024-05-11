@@ -50,6 +50,9 @@ mdp.addEventListener("input", () => {
 form.addEventListener("submit", function(event) {
     event.preventDefault();  // Prevent the default form submission
 
+    successField.hidden = true;
+    errorField.hidden = true;
+
     let isValid = form.checkValidity();  // Checks the entire form's validity
     if (!isValid) {
       console.log("Champs non remplis");
@@ -73,7 +76,7 @@ function sendXHR() {
     xhr.send(new FormData(form));
 }
 function handleResponse(response) {
-    const cleanResponse = response.trim().toLowerCase();  
+    const cleanResponse = response.trim().toLowerCase();
 
     if (cleanResponse === "ok") {
       successField.textContent = "Cours ajoute avec succees";
@@ -83,7 +86,6 @@ function handleResponse(response) {
     } else if (cleanResponse === "already exist") {
       errorField.textContent = "Un cours avec le meme titre existe deja";
       errorField.hidden = false;
-      successField.hidden = true;
     } else {
       errorField.textContent = "Erreur";
       errorField.hidden = false;

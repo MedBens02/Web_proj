@@ -45,6 +45,14 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
         </div>
     </div>
         
+
+    <div class="tables-two-cont">
+        <div class="contn">
+        <h2>List des autres cours</h2>
+        <div id="coursAll" class="table-wrapper"></div>
+        </div>
+    </div>
+
     <script src="../../scripts/dashboardEtudiant.js"></script>
 </body>
 <footer class="footer">

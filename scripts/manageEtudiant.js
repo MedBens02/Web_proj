@@ -35,30 +35,53 @@ function fetchAllStudents() {
 
 function fetchCourses() {
     const select = document.getElementById('cours');
-    select.innerHTML += `<option value="" disabled selected>Cours</option>`;
-    fetch('../../controllers/fetchAllCourses.php')
-        .then(response => response.json())
-        .then(data => {
-            select.innerHTML += data.map(course => `<option value="${course.id}">${course.nom}</option>`).join('');
+    select.innerHTML = `<option value="" disabled selected>Select a Course</option>`; // Reset dropdown content
+
+    Promise.all([
+        fetch('../../controllers/fetchAllCourses.php').then(response => response.json()),
+        fetch('../../controllers/fetchRequestsByCourse.php').then(response => response.json())
+    ])
+    .then(([courses, requestedCourseIds]) => {
+        if (courses.error) {
+            console.error('Error fetching courses:', courses.error);
+            return;
+        }
+        if (!Array.isArray(requestedCourseIds)) {
+            console.error('Error fetching requests:', requestedCourseIds);
+            return;
+        }
+
+        const requestsSet = new Set(requestedCourseIds); // Create a set for quick lookup
+        courses.forEach(course => {
+            const hasRequests = requestsSet.has(course.id);
+            const notifHtml = hasRequests ? ' (!)' : ''; // Show '!' if there are pending requests
+            select.innerHTML += `<option value="${course.id}">${course.nom}${notifHtml}</option>`;
         });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 }
 const errorMsg = document.getElementById('failed');
 const successMsg = document.getElementById('success');
 
 function fetchStudents(courseId) {
-    fetch(`../../controllers/fetchStudentsWithEnrollment.php?courseId=${courseId}`)
-    .then(response => response.json())
-    .then(data => {
+    Promise.all([
+        fetch(`../../controllers/fetchStudentsWithEnrollment.php?courseId=${courseId}`).then(res => res.json()),
+        fetch(`../../controllers/fetchRequestsForCourse.php?courseId=${courseId}`).then(res => res.json())
+    ]).then(([students, requests]) => {
         const container = document.getElementById('students');
         let html = `<table class="check-table"><tr><th>Action</th><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Adresse</th></tr>`;
-        data.forEach(student => {
+        students.forEach(student => {
+            const isRequested = requests.includes(student.id);
             let actionHtml = student.is_enrolled ?
                 `<span class="remove-enrollment" data-student-id="${student.id}" title="Remove enrollment">×</span>` :
                 `<input type="checkbox" name="student" value="${student.id}">`;
+            let notifHtml = isRequested ? `<span class="notif"> !</span>` : '';
 
             html += `<tr>
                         <td>${actionHtml}</td>
-                        <td>${student.id}</td>
+                        <td>${student.id}${notifHtml}</td>
                         <td>${student.nom}</td>
                         <td>${student.prenom}</td>
                         <td>${student.email}</td>
@@ -74,9 +97,10 @@ function fetchStudents(courseId) {
                 removeEnrollment(courseId, this.getAttribute('data-student-id'));
             });
         });
+    }).catch(error => {
+        console.error('Error fetching data:', error);
     });
 }
-
 
 
 function enrollStudents() {
@@ -87,7 +111,7 @@ function enrollStudents() {
 
     // Check if any students are selected
     if (selectedStudents.length === 0) {
-        errorMsg.textContent = 'No students selected for enrollment.';
+        errorMsg.textContent = 'Aucun etudiant n\'est selectionne.';
         errorMsg.hidden = false;
         return;  // Stop the function if no students are selected
     }
@@ -104,6 +128,9 @@ function enrollStudents() {
         if (result === "Success") {
             successMsg.textContent = "Etudiant ajoute avec succees";
             successMsg.hidden = false;
+            selectedStudents.forEach(studentId => {
+                removeRequest(courseId, studentId);
+            });
         }
     })
     .catch(error => console.error('Error:', error));
@@ -130,4 +157,23 @@ function removeEnrollment(courseId, studentId) {
         }
     })
     .catch(error => console.error('Error:', error));
+}
+
+function removeRequest(courseId, studentId) {
+    fetch('../../controllers/cancelRequest.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `courseId=${courseId}&studentId=${studentId}`
+    })
+    .then(response => response.text())
+    .then(result => {
+        fetchStudents(courseId); // Optionally refresh the list if needed
+        fetchCourses();
+    })
+    .catch(error => {
+        console.error('Error removing request:', error);
+        alert('Failed to remove request.');
+    });
 }

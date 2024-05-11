@@ -55,8 +55,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'etudiant') {
             
     <div class="tables-two-cont">
         <div class="contn">
-        <h2>Liste des parties</h2>
-        <div id="parts" class="table-wrapper"></div>
+        <h2>Tous les cours</h2>
+        <div id="select" class="table-wrapper"></div>
         </div>
     </div>
 

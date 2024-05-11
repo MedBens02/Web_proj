@@ -32,7 +32,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
-        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
+        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants <span id="notif" hidden>!</span></a>
         <a href="manageModule.php" id="manageModule-link">Manage Module</a>
         <a href="chat.php" id="chat-link">Chat</a>
 
@@ -63,6 +63,8 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         </div>
     </div>
     <script src="../../scripts/manageEtudiant.js" type="module"></script>
+    <script src="../../scripts/requestCheck.js"></script>
+
 </body>
 
 <footer class="footer">

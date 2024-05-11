@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchStudents();
     if (window.location.href.includes('dashboard') || window.location.href.includes('manageCours'))
         fetchCourses();
+    checkForRequests;
 });
 
 function fetchStudents() {

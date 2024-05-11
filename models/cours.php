@@ -86,4 +86,11 @@ class Cours
         $stmt->bindParam(':partId', $partId, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+    static public function getAllExistantCourses()
+    {
+        $stmt = DB::connect()->prepare('SELECT * FROM modules');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

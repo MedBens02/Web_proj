@@ -1,36 +1,13 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--main-color);
-    display: grid;
+
     grid-template-columns: [start sidebar-start] 1fr 
         [sidebar-end content-start] 4fr [end content-end];
     grid-template-rows: [start header-start] 1fr [header-end content-start] 
         3fr [content-end content-two-start] 5fr [content-two-end footer-start]
         auto [end footer-end];
-    gap: 20px;
-    padding: 20px;
-    overflow: auto; 
-    height: 100vh;
-    min-height: 800px;
-    min-width: 1000px;
-
 }
 
 
-.tables-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    grid-column: content-start / content-end;
-    grid-row: content-start / content-two-start;
-}
-.tables-two-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    grid-column: content-start / content-end;
-    grid-row: content-two-start / content-two-end;
-}
 .tables-cont {
     grid-row: content-start / content-two-end;
 }
@@ -48,7 +25,7 @@ body {
 
 .form-group {
     margin: 15px;
-    position: relative; /* Position the error message relative to its parent .form-group */
+    position: relative;
 }
 .form-group label {
     display: inline-block;
@@ -76,8 +53,8 @@ body {
     color: #ff0000;
     font-size: 0.8rem;
     margin-left: 21%;
-    display: block; /* Make the error message a block-level element */
-    margin-top: 5px; /* Add some space between the input field and the error message */
+    display: block;
+    margin-top: 5px; 
 }
 
 .error-alert {

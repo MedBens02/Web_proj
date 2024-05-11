@@ -31,7 +31,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'admin') {
         <a href="dashboardAdmin.php" id="dashboard-link">Dashboard</a>
         <a href="manageUsers.php" id="manage-users-link">Manage Users  <span id="notif" hidden>!</span></a>
         <a href="addUsers.php" id="addUsers-link">Ajouter Users</a>
-        <a href="chat.php" id="chat-link">Chat</a>
         <a href="../logout.php">Logout</a>
     </div>
     

@@ -87,13 +87,13 @@ function fetchStudents() {
 }
 
 function confirmDeleteProf(profId) {
-    if (confirm('Are you sure you want to delete this professor?')) {
+    if (confirm('Confirmer la supression du professeur.')) {
         removeProf(profId);
     }
 }
 
 function confirmDeleteStudent(stdId) {
-    if (confirm('Are you sure you want to delete this student?')) {
+    if (confirm('Confirmer la supression d\'etudiant.')) {
         removeStudent(stdId);
     }
 }

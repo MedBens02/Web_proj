@@ -1,3 +1,11 @@
+body {
+    grid-template-columns: [start sidebar-start] 1fr 
+        [sidebar-end content-start] 4fr [end content-end];
+    grid-template-rows: [start header-start] 1fr [header-end content-start] 
+        2fr [content-end content-two-start] 5fr [content-two-end footer-start]
+        auto [end footer-end];
+}
+
 .form-group output {
   margin-left: 5%;
   width: 50%;
@@ -43,13 +51,7 @@
   margin-left: 3%;
 }
 
-.tables-two-cont {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  grid-column: content-start / content-end;
-  grid-row: content-two-start / content-two-end;
-}
+
 .chat-box {
   padding: 10px;
   display: flex;
@@ -58,13 +60,14 @@
   overflow-y: auto;
   border: 1px solid var(--fourth-color);
   border-radius: 4px;
-  max-height: 350px;
+  max-height: 320px;
   width: 95%;
   margin: 20px;
 }
 
 .form-input {
-  width: 60%;
+  width: 50%;
+  margin-left: 5%;
 }
 
 .form-group label {

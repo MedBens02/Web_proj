@@ -145,11 +145,11 @@ h1, h2 {
 }
 
 table {
-    width: 100%; /* Table width to fill subcontainer */
+    width: 100%;
     min-width: 600px;
     border-collapse: collapse;
     margin-top: 20px;
-    table-layout: fixed; /* This ensures the columns have fixed widths regardless of content */
+    table-layout: fixed;
 }
 
 th, td {

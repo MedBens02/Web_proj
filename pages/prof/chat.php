@@ -19,9 +19,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
     <title>Prof Dashboard</title>
     <link rel="stylesheet" href="dashboardProf.css">
     <link rel="stylesheet" href="manageCours.css">
-    <link rel="stylesheet" href="dashboardProfChat.css">
-    
-    <link rel="stylesheet" href="./chat.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
 
 <body>
@@ -37,7 +35,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
         <h4><?php echo $_SESSION['role']; ?></h4>
         <a href="dashboardProf.php" id="dashboard-link">Dashboard</a>
         <a href="manageCours.php" id="manage-cours-link">Manage Cours</a>
-        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants <span id="notif" hidden>!</span></a>
+        <a href="manageEtudiant.php" id="settings-link">Manage Etudiants</a>
         <a href="manageModule.php" id="manageModule-link">Manage Module</a>
         <a href="chat.php" id="chat-link">Chat</a>
 
@@ -53,7 +51,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
             <div id="success" class="success-alert" hidden></div>
 
             <div class="form-group">
-                <label for="students">Students:</label>
+                <label for="cours">Students:</label>
                 <select id="students" name="student" class="form-input"></select>
             </div>
 
@@ -81,8 +79,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 
         </div>
     </div>
-    <script src="../../scripts/requestCheck.js"></script>
-
 </body>
 
 <footer class="footer">
@@ -120,7 +116,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
 
     document.querySelector('#sendbtn').addEventListener("click", function() {
         if (!PAYLOAD.message || !PAYLOAD.recipientId) {
-            alert("select a course and input text first");
+            alert("Selectionner un etudiant");
             return;
         }
         fetch(
@@ -132,7 +128,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
                 }
             )
             .then((r) => {
-                if (r.status !== 201 || r.status !== 200) {
+                if (r.status !== 201) {
                     alert("could not send messag")
                 }
             })
@@ -140,14 +136,19 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
                 alert("Oops something went wrong")
             })
             .finally(() => {
-                PAYLOAD.recipientId = PAYLOAD.message = undefined;
-                //reload
+                loadChat(PAYLOAD.recipientId);
+                PAYLOAD.message = undefined;
             });
     })
 
     document.querySelector('#broadcastbtn').addEventListener("click", function() {
-        if (!PAYLOAD.message || moduleID == undefined) {
-            alert("select a course and input text first");
+
+        if (!PAYLOAD.message) {
+            alert("Ecrire un message");
+            return;
+        }
+        if (moduleID == undefined) {
+            alert("Selectionner un cours");
             return;
         }
         fetch(
@@ -165,8 +166,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['role'] !== 'prof') {
                 alert("Oops something went wrong")
             })
             .finally(() => {
-                loadChat()
-                //reload
+                loadChat(PAYLOAD.recipientId);
             });
     })
 

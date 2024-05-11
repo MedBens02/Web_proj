@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     fetchCourses();
-    fetchAllStudents();  // You might need to pass an initial courseId if applicable.
+    fetchAllStudents();
 
     document.getElementById('enrollButton').addEventListener('click', enrollStudents);
 });
@@ -35,7 +35,7 @@ function fetchAllStudents() {
 
 function fetchCourses() {
     const select = document.getElementById('cours');
-    select.innerHTML = `<option value="" disabled selected>Select a Course</option>`; // Reset dropdown content
+    select.innerHTML = `<option value="" disabled selected>Selectionner un cours</option>`; // Reset dropdown content
 
     Promise.all([
         fetch('../../controllers/fetchAllCourses.php').then(response => response.json()),
@@ -113,7 +113,7 @@ function enrollStudents() {
     if (selectedStudents.length === 0) {
         errorMsg.textContent = 'Aucun etudiant n\'est selectionne.';
         errorMsg.hidden = false;
-        return;  // Stop the function if no students are selected
+        return;
     }
 
     fetch('../../controllers/enrollEtudiant.php', {
@@ -148,7 +148,7 @@ function removeEnrollment(courseId, studentId) {
     .then(response => response.json())
     .then(result => {
         if (result.success) {
-            fetchStudents(courseId); // Refresh the list to reflect changes
+            fetchStudents(courseId);
             successMsg.textContent = "Etudiant enleve avec succees";
             successMsg.hidden = false;
         } else {
@@ -169,7 +169,7 @@ function removeRequest(courseId, studentId) {
     })
     .then(response => response.text())
     .then(result => {
-        fetchStudents(courseId); // Optionally refresh the list if needed
+        fetchStudents(courseId);
         fetchCourses();
     })
     .catch(error => {

@@ -25,7 +25,7 @@ class Chat
 
     public static function SendMessage($sender_id, $recipient_id, $message)
     {
-        $db = DB::connect(); // Assuming DB::connect() connects to your database
+        $db = DB::connect();
 
         // Prepare the SQL statement
         $sql = "INSERT INTO chat_logs (sender_id, recipient_id, msg, time_stamp) 

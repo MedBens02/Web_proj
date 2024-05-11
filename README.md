@@ -46,9 +46,16 @@ Importez la structure de la base de données en exécutant les scripts SQL fourn
 ### 4. Lancement de l'application
 Une fois la configuration terminée, ouvrez votre navigateur et accédez à l'application via http://localhost/proj.
 
-### 5.Comptes
+### 5. Comptes
 
-``Prof		: 	test@gmail.com 		test
-Etudiant	: 	test@gmail.com 		test
-Admin 		: 	admin 				admin
-``
+- **Professeur**  
+  Email: `test@gmail.com`  
+  Mot de passe: `test`
+
+- **Étudiant**  
+  Email: `test@gmail.com`  
+  Mot de passe: `test`
+
+- **Admin**  
+  Utilisateur: `admin`  
+  Mot de passe: `admin`

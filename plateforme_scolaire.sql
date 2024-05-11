@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 11, 2024 at 06:37 PM
+-- Generation Time: May 11, 2024 at 08:49 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `login`, `mot_de_passe`) VALUES
-(1, 'Med', 'Muad', 'admin', 'admin');
+(1, 'Med', 'med', 'admin', '$2y$10$Sk3GQt3C2o6KIXeJBl6.CuYF0XJb9BZc/I9r1kXTAL.49O3kjRNCW');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,55 @@ INSERT INTO `chat_logs` (`sender_id`, `recipient_id`, `time_stamp`, `msg`) VALUE
 (20, 38, '2024-05-11 14:20:11', 'anonce'),
 (20, 38, '2024-05-11 14:23:17', 'yyy'),
 (20, 39, '2024-05-11 14:23:17', 'yyy'),
-(20, 40, '2024-05-11 14:23:17', 'yyy');
+(20, 40, '2024-05-11 14:23:17', 'yyy'),
+(20, 37, '2024-05-11 19:01:55', 'psfka dadfadf'),
+(20, 37, '2024-05-11 19:03:15', 'yrrrtwefd s vs'),
+(20, 37, '2024-05-11 19:03:52', 'ad aegs addfd'),
+(37, 20, '2024-05-11 19:05:48', 'fd'),
+(37, 20, '2024-05-11 19:05:52', 'ggegdv'),
+(37, 21, '2024-05-11 19:06:01', 'ggegdv'),
+(20, 37, '2024-05-11 19:07:18', 'TEST ANNONCE JS'),
+(20, 40, '2024-05-11 19:07:18', 'TEST ANNONCE JS'),
+(20, 38, '2024-05-11 19:07:18', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:07:27', 'TEST ANNONCE JS'),
+(20, 40, '2024-05-11 19:07:27', 'TEST ANNONCE JS'),
+(20, 38, '2024-05-11 19:07:27', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:07:41', 'TEST ANNONCE JS'),
+(20, 40, '2024-05-11 19:07:41', 'TEST ANNONCE JS'),
+(20, 38, '2024-05-11 19:07:41', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:07:55', 'TEST ANNONCE JS'),
+(20, 40, '2024-05-11 19:07:55', 'TEST ANNONCE JS'),
+(20, 38, '2024-05-11 19:07:55', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:10:22', 'rttg fhfg'),
+(20, 40, '2024-05-11 19:10:22', 'rttg fhfg'),
+(20, 38, '2024-05-11 19:10:22', 'rttg fhfg'),
+(20, 37, '2024-05-11 19:11:17', 'TEST ANNONCE JS'),
+(20, 40, '2024-05-11 19:11:17', 'TEST ANNONCE JS'),
+(20, 38, '2024-05-11 19:11:17', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:11:41', 'TEST ANNONCE JS'),
+(20, 37, '2024-05-11 19:12:02', 'bla'),
+(20, 37, '2024-05-11 19:13:34', 'grrg'),
+(20, 37, '2024-05-11 19:15:08', 'etst'),
+(20, 0, '2024-05-11 19:15:08', 'etst'),
+(20, 37, '2024-05-11 19:16:40', 'trttr'),
+(20, 37, '2024-05-11 19:18:08', 'tst reload'),
+(20, 37, '2024-05-11 19:21:00', 'adjkfjkab afjdnlkfn'),
+(20, 37, '2024-05-11 19:21:15', 'afadfa afdfad f'),
+(20, 37, '2024-05-11 19:22:02', 'fsgsg gasdgs'),
+(20, 37, '2024-05-11 19:22:58', 'efasfgf gsf'),
+(20, 37, '2024-05-11 19:24:29', 'wafe'),
+(20, 37, '2024-05-11 19:32:20', 'aefklf akladak'),
+(20, 37, '2024-05-11 19:32:24', 'aefklf akladaka ad;; amd;lfm'),
+(37, 20, '2024-05-11 19:32:30', 'afdsfhfd'),
+(20, 37, '2024-05-11 19:32:41', 'TEST ANN JS'),
+(20, 40, '2024-05-11 19:32:41', 'TEST ANN JS'),
+(20, 38, '2024-05-11 19:32:41', 'TEST ANN JS'),
+(20, 37, '2024-05-11 19:33:34', 'TEST ANN JS NO STD'),
+(20, 40, '2024-05-11 19:33:34', 'TEST ANN JS NO STD'),
+(20, 38, '2024-05-11 19:33:34', 'TEST ANN JS NO STD'),
+(20, 37, '2024-05-11 19:34:33', 'tetr hh'),
+(20, 40, '2024-05-11 19:34:33', 'tetr hh'),
+(20, 38, '2024-05-11 19:34:33', 'tetr hh');
 
 -- --------------------------------------------------------
 
@@ -98,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `enrollement` (
   PRIMARY KEY (`id`),
   KEY `id_etd` (`id_etd`),
   KEY `id_cours` (`id_cours`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `enrollement`
@@ -135,14 +183,7 @@ CREATE TABLE IF NOT EXISTS `enrollment_requests` (
   KEY `student` (`student_id`),
   KEY `cours` (`cours_id`),
   KEY `prof_request` (`prof_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `enrollment_requests`
---
-
-INSERT INTO `enrollment_requests` (`request_id`, `student_id`, `cours_id`, `prof_id`) VALUES
-(26, 37, 13, 20);
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -161,14 +202,14 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `etudiant`
 --
 
 INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
-(37, 'gg', 'ff', 'ff', 'test@gmail.com', 'ff', 0),
+(37, 'med', 'bens', 'ff', 'test@gmail.com', 'ff', 0),
 (38, 'hh', 'ff', 'ff', 'test3@gmail.com', 'ff', 0),
 (39, 'Espinoza', 'Leslie', '207 Erin Well, West Andreamouth, TN 60441', 'leslie.espinoza@example.com', 'MlH%^U)yH3O', 0),
 (40, 'Wood', 'Julie', '601 Sandra Knolls, Freemanfort, HI 57222', 'julie.wood@example.com', '@k0ytSS$mMSpo', 0),
@@ -186,7 +227,8 @@ INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe
 (55, 'gg', 'gg', 'gg', 'testAdmin@gg.gg', 'gg', 0),
 (56, 'gg', 'gg', 'gg', 'testAdmin2@gg.gg', 'gg', 0),
 (57, 'gg', 'gg', 'gg', 'testAdmin3@gg.gg', 'gg', 0),
-(58, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0);
+(58, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0),
+(60, 'test', 'test', 'test', 'testhash@gmail.com', '$2y$10$vRmMJM55bS9w4tOJ33xMS.ybdPaHbIRPTi.5nFQhBa6S.ZgKqw/Uq', 0);
 
 -- --------------------------------------------------------
 
@@ -214,7 +256,6 @@ INSERT INTO `modules` (`id`, `nom`, `description`, `prof_id`) VALUES
 (7, 'PYTHON', 'Cours de PYTHON', 20),
 (8, 'c#', 'Cours de c#', 21),
 (9, 'Français', 'Cours de français', 20),
-(12, 'Java', 'Programmation Java', 23),
 (13, 'controle de gestion', 'Cours de marketing', 20),
 (16, 'rr', 'rr', 21),
 (23, 'test', 'test', 21),
@@ -248,7 +289,6 @@ INSERT INTO `parties` (`id_part`, `id_cours`, `title_part`, `path_part`, `view_f
 (3, 7, 'Beginner Guide Module 7', '/uploads/beginner_guide_module_7.pdf', 0),
 (4, 8, 'Historical Overview Module 8', '/uploads/historical_overview_module_8.pdf', 1),
 (5, 9, 'Practical Applications Module 9', '/uploads/practical_applications_module_9.pdf', 0),
-(6, 12, 'Case Studies for Module 12', '/uploads/case_studies_module_12.pdf', 1),
 (7, 13, 'Module 13 Summary', '/uploads/module_13_summary.pdf', 0),
 (8, 16, 'Detailed Analysis Module 16', '/uploads/detailed_analysis_module_16.pdf', 1),
 (9, 23, 'Module 23 Explained', '/uploads/module_23_explained.pdf', 0),
@@ -274,21 +314,22 @@ CREATE TABLE IF NOT EXISTS `professeurs` (
   `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `request` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `professeurs`
 --
 
 INSERT INTO `professeurs` (`id`, `nom`, `prenom`, `adresse`, `email`, `mot_de_passe`, `request`) VALUES
-(20, 'med', 'bens', 'dd', 'test@gmial.com', 'dd', 1),
-(21, 'ff', 'ff', 'ff', 'test2@gmial.com', 'ff', 0),
-(23, 'rr', 'rr', 'rr', 'test3@gmail.com', 'rr', 0),
-(24, 'ff', 'ff', 'ff', 'test6@gmial.com', 'ff', 0),
-(25, 'gg', 'ggg', 'gg', 'testADmin@gg.gg', 'gg', 0),
-(26, 'gg', 'gg', 'gg', 'testadmin2@gg.gg', 'gg', 0),
-(27, 'gg', 'gg', 'gg', 'testadmin3@gg.gg', 'gg', 0),
-(28, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', 'gg', 0);
+(20, 'med', 'bens', 'dd', 'test@gmial.com', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(21, 'ff', 'ff', 'ff', 'test2@gmial.com', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(23, 'rr', 'rr', 'rr', 'test3@gmail.com', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(24, 'ff', 'ff', 'ff', 'test6@gmial.com', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(25, 'gg', 'ggg', 'gg', 'testADmin@gg.gg', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(26, 'gg', 'gg', 'gg', 'testadmin2@gg.gg', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(27, 'gg', 'gg', 'gg', 'testadmin3@gg.gg', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(28, 'gg', 'gg', 'gg', 'testAdmin4@gg.gg', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0),
+(29, 'test', 'test', 'test', 'testhash@gmail.com', '$2y$10$0X3hYZprrPKjA1ZA2OCjSuL.9DLrWTC8QQRA6/VPytvkzH62oihRC', 0);
 
 --
 -- Constraints for dumped tables
